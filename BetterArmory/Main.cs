@@ -15,12 +15,12 @@ namespace BetterArmory
     [BepInPlugin(ModGuid, ModName, ModVer)]
     [BepInDependency(R2API.R2API.PluginGUID, R2API.R2API.PluginVersion)]
     [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.EveryoneNeedSameModVersion)]
-    [R2APISubmoduleDependency(nameof(ItemAPI), nameof(LanguageAPI), nameof(ArtifactAPI))]
+    [R2APISubmoduleDependency(nameof(ItemAPI), nameof(LanguageAPI), nameof(ArtifactAPI), nameof(RecalculateStatsAPI))]
     public class Main : BaseUnityPlugin
     {
-        public const string ModGuid = "com.MyUsername.MyModName";
-        public const string ModName = "My Mod's Title and if we see this exact name on Thunderstore we will deprecate your mod";
-        public const string ModVer = "0.0.1";
+        public const string ModGuid = "com.Tios.BetterArmory";
+        public const string ModName = "Better Armory";
+        public const string ModVer = "0.0.2";
 
         public static AssetBundle MainAssets;
 

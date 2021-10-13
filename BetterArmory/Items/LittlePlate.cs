@@ -1,18 +1,18 @@
 ﻿using BepInEx.Configuration;
 using R2API;
-using R2API.Utils;
 using RoR2;
-using System;
 using UnityEngine;
+
+using static R2API.RecalculateStatsAPI;
 using static BetterArmory.Main;
 
 namespace BetterArmory.Items
 {
-    public class ExampleItem : ItemBase
+    public class LittlePlate : ItemBase
     {
 
-        public override string ItemName => "Deprecate Me Item";
-        public override string ItemLangTokenName => "DEPRECATE_ME_ITEM";
+        public override string ItemName => "Little Plate";
+        public override string ItemLangTokenName => "LITTLE_PLATE";
         public override string ItemPickupDesc => "Give armor to proctect you";
         public override string ItemFullDescription => "Let armor be the thoughest thing in the world";
         public override string ItemLore => "";
@@ -22,6 +22,7 @@ namespace BetterArmory.Items
         public override GameObject ItemModel => MainAssets.LoadAsset<GameObject>("assets/models/prefabs/item/firstitem/littleplate.prefab");
         public override Sprite ItemIcon => MainAssets.LoadAsset<Sprite>("assets/textures/icons/item/littleplate_icon.png");
 
+        public ConfigEntry<float> ArmorBase;
         public ConfigEntry<float> ArmorPerStack;
 
         public override void Init(ConfigFile config)
@@ -34,7 +35,8 @@ namespace BetterArmory.Items
 
         public override void CreateConfig(ConfigFile config)
         {
-            ArmorPerStack= config.Bind<float>("Item: "+ItemName,"Armor per Little Plate stack",0.08f,"How much armor should each stack of LitllePlate give");
+            ArmorBase = config.Bind<float>("Item: " + ItemName, "Base armor for Little Plate", 10.0f, "How much armor should the first gave you");
+            ArmorPerStack = config.Bind<float>("Item: " + ItemName, "Armor per Little Plate stack", 15.0f, "How much armor should each stack of LitllePlate give");
 
         }
 
@@ -45,18 +47,17 @@ namespace BetterArmory.Items
 
         public override void Hooks()
         {
-            RecalculateStatsAPI.GetStatCoefficients += AddArmor;
-            
+            GetStatCoefficients += AddArmor;
         }
-
 
         private void AddArmor(CharacterBody sender, RecalculateStatsAPI.StatHookEventArgs args)
         {
-            ChatMessage.Send(sender.armor.ToString());
-            args.armorAdd += ArmorPerStack.Value * (GetCount(sender) - 1);
-            ChatMessage.Send(sender.armor.ToString());
-        }
+            var inventoryCount = GetCount(sender);
+            if (inventoryCount > 0)
+            {
+                args.armorAdd += ArmorBase.Value + (ArmorPerStack.Value * (inventoryCount - 1));
+            }
 
-       
+        }
     }
 }
