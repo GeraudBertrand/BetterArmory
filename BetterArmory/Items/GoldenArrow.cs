@@ -1,12 +1,13 @@
 ﻿using BepInEx.Configuration;
+using MonoMod.Cil;
 using R2API;
 using R2API.Utils;
 using RoR2;
+using System;
+using System.IO;
 using UnityEngine;
 
-using static R2API.RecalculateStatsAPI;
 using static BetterArmory.Main;
-using System;
 
 namespace BetterArmory.Items
 {
@@ -22,7 +23,6 @@ namespace BetterArmory.Items
 
         public override GameObject ItemModel => MainAssets.LoadAsset<GameObject>("assets/models/prefabs/item/firstitem/littleplate.prefab");
         public override Sprite ItemIcon => MainAssets.LoadAsset<Sprite>("assets/textures/icons/item/littleplate_icon.png");
-
         public ConfigEntry<float> CritCoeff;
 
         public override void Init(ConfigFile config)
@@ -43,39 +43,34 @@ namespace BetterArmory.Items
         {
             return new ItemDisplayRuleDict();
         }
-
+         
         public override void Hooks()
         {
-            On.RoR2.GlobalEventManager.OnHitEnemy += doubleCrit;
+            IL.RoR2.HealthComponent.TakeDamage += MultiCrit;
         }
 
-        private void doubleCrit(On.RoR2.GlobalEventManager.orig_OnHitEnemy orig, GlobalEventManager self, DamageInfo damageInfo, GameObject victim)
+        private void MultiCrit(ILContext il)
         {
-            if(damageInfo.rejected || damageInfo.procCoefficient <= 0)
-            {
-                orig(self, damageInfo, victim);
-                return;
-            }
+            var c = new ILCursor(il);
+            c.GotoNext(
+                x => x.MatchLdloc(6),
+                x => x.MatchLdcR4(2f)
+                );
+            c.Index += 1;
+            c.Next.Operand = 2f + CritCoeff.Value ;
 
-            var attacker = damageInfo.attacker;
-            if (attacker)
+            c.EmitDelegate<Func<CharacterBody, float>>((cb) => 
             {
-                var body = attacker.GetComponent<CharacterBody>();
-                var victimBody = victim.GetComponent<CharacterBody>();
-                if(body && victimBody)
+                if (cb.master.inventory)
                 {
-                    if (damageInfo.crit)
+                    int ItemCount = GetCount(cb);
+                    if(ItemCount > 0)
                     {
-                        var inventoryCount = GetCount(body);
-                        if(inventoryCount > 0)
-                        {
-                            damageInfo.damage = damageInfo.damage *  ( 1 + (CritCoeff.Value * inventoryCount));
-                        }
+                        return 2f + CritCoeff.Value * ItemCount;
                     }
-                    
                 }
-            }
+                return 2f;
+            });
         }
-
     }
 }
