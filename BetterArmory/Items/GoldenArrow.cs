@@ -1,10 +1,12 @@
 ﻿using BepInEx.Configuration;
+using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using R2API;
 using R2API.Utils;
 using RoR2;
 using System;
 using System.IO;
+using System.Reflection;
 using UnityEngine;
 
 using static BetterArmory.Main;
@@ -36,7 +38,7 @@ namespace BetterArmory.Items
 
         public override void CreateConfig(ConfigFile config)
         {
-            CritCoeff = config.Bind<float>("Item: "+ItemName,"Critical coefficient per stack",0.2f,"How much crit coefficient should item apply");
+            CritCoeff = config.Bind<float>("Item: "+ItemName,"Critical coefficient per stack",2f,"How much crit coefficient should item apply");
         }
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()
@@ -57,20 +59,18 @@ namespace BetterArmory.Items
                 x => x.MatchLdcR4(2f)
                 );
             c.Index += 1;
-            c.Next.Operand = 2f + CritCoeff.Value ;
-
-            c.EmitDelegate<Func<CharacterBody, float>>((cb) => 
+            c.Remove();
+            c.Emit(OpCodes.Ldarg_0); // put health component on the stack
+            //c.Emit(OpCodes.Ldfld, typeof(HealthComponent).GetField("body", BindingFlags.Instance | BindingFlags.Public)); // Load the character body onto the stack
+            Debug.Log(c.Next);
+            c.EmitDelegate<Func<HealthComponent, float>>(hc =>
             {
-                if (cb.master.inventory)
-                {
-                    int ItemCount = GetCount(cb);
-                    if(ItemCount > 0)
-                    {
-                        return 2f + CritCoeff.Value * ItemCount;
-                    }
-                }
-                return 2f;
+                var inv = hc.body.inventory;
+                if (inv == null) return 2f;
+                var itemCount = GetCount(hc.body);
+                return 2f + (1 * CritCoeff.Value); //CritCoeff.Value;
             });
+            Debug.Log(c.Next);
         }
     }
 }
