@@ -16,7 +16,6 @@ namespace BetterArmory.Utils
         /// <returns>Returns an array full of RendererInfos for GameObject.</returns>
         public static CharacterModel.RendererInfo[] ItemDisplaySetup(GameObject obj, bool debugmode = false)
         {
-
             List<Renderer> AllRenderers = new List<Renderer>();
 
             var meshRenderers = obj.GetComponentsInChildren<MeshRenderer>();
@@ -34,7 +33,6 @@ namespace BetterArmory.Utils
                     var controller = AllRenderers[i].gameObject.AddComponent<MaterialControllerComponents.HGControllerFinder>();
                     controller.Renderer = AllRenderers[i];
                 }
-
                 renderInfos[i] = new CharacterModel.RendererInfo
                 {
                     defaultMaterial = AllRenderers[i] is SkinnedMeshRenderer ? AllRenderers[i].sharedMaterial : AllRenderers[i].material,
@@ -43,8 +41,34 @@ namespace BetterArmory.Utils
                     ignoreOverlays = false //We allow the mesh to be affected by overlays like OnFire or PredatoryInstinctsCritOverlay.
                 };
             }
-
             return renderInfos;
         }
+
+        public static void RefreshTimedBuffs(CharacterBody body, BuffDef buffDef, float duration)
+        {
+            if (!body || body.GetBuffCount(buffDef) <= 0) { return; }
+            foreach (var buff in body.timedBuffs)
+            {
+                if (buffDef.buffIndex == buff.buffIndex)
+                {
+                    buff.timer = duration;
+                }
+            }
+        }
+
+        public static void RefreshTimedBuffs(CharacterBody body, BuffDef buffDef, float taperStart, float taperDuration)
+        {
+            if (!body || body.GetBuffCount(buffDef) <= 0) { return; }
+            int i = 0;
+            foreach (var buff in body.timedBuffs)
+            {
+                if (buffDef.buffIndex == buff.buffIndex)
+                {
+                    buff.timer = taperStart + i * taperDuration;
+                    i++;
+                }
+            }
+        }
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿using BepInEx.Configuration;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
+using MonoMod.Utils;
 using R2API;
 using R2API.Utils;
 using RoR2;
@@ -53,24 +54,36 @@ namespace BetterArmory.Items
 
         private void MultiCrit(ILContext il)
         {
-            var c = new ILCursor(il);
-            c.GotoNext(
+            /*var c = new ILCursor(il);
+            c.Index = 0;
+
+            bool ILFound = c.TryGotoNext(
+                x => x.MatchLdarg(1),
+                x => x.MatchLdfld<DamageInfo>("crit"),
+                x => x.MatchBrfalse(out _), 
                 x => x.MatchLdloc(6),
-                x => x.MatchLdcR4(2f)
+                x => x.MatchLdcR4(2f),
+                x => x.MatchMul(),
+                x => x.MatchStloc(6)
                 );
-            c.Index += 1;
-            c.Remove();
-            c.Emit(OpCodes.Ldarg_0); // put health component on the stack
-            //c.Emit(OpCodes.Ldfld, typeof(HealthComponent).GetField("body", BindingFlags.Instance | BindingFlags.Public)); // Load the character body onto the stack
-            Debug.Log(c.Next);
-            c.EmitDelegate<Func<HealthComponent, float>>(hc =>
+            if (ILFound)
             {
-                var inv = hc.body.inventory;
-                if (inv == null) return 2f;
-                var itemCount = GetCount(hc.body);
-                return 2f + (1 * CritCoeff.Value); //CritCoeff.Value;
-            });
-            Debug.Log(c.Next);
+                c.Emit(OpCodes.Ldarg_0); // put health component on the stack
+                c.Emit(OpCodes.Ldfld, typeof(HealthComponent).GetField("body", BindingFlags.Instance | BindingFlags.Public)); // Load the character body onto the stack
+
+                c.EmitDelegate<Func<HealthComponent, float>>(hc =>
+                {
+                    var inv = hc.body.master.inventory;
+                    if (inv)
+                    {
+                        var itemCount = GetCount(hc.body);
+                        float val = 2f + (itemCount * CritCoeff.Value);
+                        Debug.Log(itemCount+" : "+val);
+                        return val;
+                    }
+                    return 2f;
+                });
+            }*/
         }
     }
 }

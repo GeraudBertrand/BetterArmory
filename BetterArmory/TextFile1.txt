@@ -1,0 +1,1448 @@
+﻿// ILContext: System.Void DMD<RoR2.HealthComponent::TakeDamage>?-46365184::RoR2.HealthComponent::TakeDamage(RoR2.HealthComponent,RoR2.DamageInfo)
+IL_0000: call System.Boolean UnityEngine.Networking.NetworkServer::get_active()
+IL_0005: brtrue IL_0015
+IL_000a: ldstr "[Server] function 'System.Void RoR2.HealthComponent::TakeDamage(RoR2.DamageInfo)' called on client"
+IL_000f: call System.Void UnityEngine.Debug::LogWarning(System.Object)
+IL_0014: ret
+IL_0015: ldarg.0
+IL_0016: call System.Boolean RoR2.HealthComponent::get_alive()
+IL_001b: brfalse.s IL_0025
+IL_001d: ldarg.0
+IL_001e: call System.Boolean RoR2.HealthComponent::get_godMode()
+IL_0023: brfalse.s IL_0026
+IL_0025: ret
+IL_0026: ldarg.0
+IL_0027: ldfld System.Single RoR2.HealthComponent::ospTimer
+IL_002c: ldc.r4 0
+IL_0031: ble.un.s IL_0034
+IL_0033: ret
+IL_0034: ldnull
+IL_0035: stloc.0
+IL_0036: ldnull
+IL_0037: stloc.1
+IL_0038: ldc.i4.m1
+IL_0039: stloc.2
+IL_003a: call UnityEngine.Vector3 UnityEngine.Vector3::get_zero()
+IL_003f: stloc.3
+IL_0040: ldarg.0
+IL_0041: call System.Single RoR2.HealthComponent::get_combinedHealth()
+IL_0046: stloc.s V_4
+IL_0048: ldarg.1
+IL_0049: ldfld UnityEngine.GameObject RoR2.DamageInfo::attacker
+IL_004e: call System.Boolean UnityEngine.Object::op_Implicit(UnityEngine.Object)
+IL_0053: brfalse.s IL_0087
+IL_0055: ldarg.1
+IL_0056: ldfld UnityEngine.GameObject RoR2.DamageInfo::attacker
+IL_005b: callvirt T UnityEngine.GameObject::GetComponent<RoR2.CharacterBody>()
+IL_0060: stloc.1
+IL_0061: ldloc.1
+IL_0062: call System.Boolean UnityEngine.Object::op_Implicit(UnityEngine.Object)
+IL_0067: brfalse.s IL_0087
+IL_0069: ldloc.1
+IL_006a: callvirt RoR2.TeamComponent RoR2.CharacterBody::get_teamComponent()
+IL_006f: callvirt RoR2.TeamIndex RoR2.TeamComponent::get_teamIndex()
+IL_0074: stloc.2
+IL_0075: ldloc.1
+IL_0076: callvirt UnityEngine.Vector3 RoR2.CharacterBody::get_corePosition()
+IL_007b: ldarg.1
+IL_007c: ldfld UnityEngine.Vector3 RoR2.DamageInfo::position
+IL_0081: call UnityEngine.Vector3 UnityEngine.Vector3::op_Subtraction(UnityEngine.Vector3,UnityEngine.Vector3)
+IL_0086: stloc.3
+IL_0087: ldarg.1
+IL_0088: ldfld RoR2.DamageType RoR2.DamageInfo::damageType
+IL_008d: ldc.i4.2
+IL_008e: and
+IL_008f: ldc.i4.0
+IL_0090: cgt.un
+IL_0092: stloc.s V_5
+IL_0094: ldarg.0
+IL_0095: ldflda RoR2.HealthComponent/ItemCounts RoR2.HealthComponent::itemCounts
+IL_009a: ldfld System.Int32 RoR2.HealthComponent/ItemCounts::bear
+IL_009f: ldc.i4.0
+IL_00a0: ble.s IL_0117
+IL_00a2: ldc.r4 15
+IL_00a7: ldarg.0
+IL_00a8: ldflda RoR2.HealthComponent/ItemCounts RoR2.HealthComponent::itemCounts
+IL_00ad: ldfld System.Int32 RoR2.HealthComponent/ItemCounts::bear
+IL_00b2: conv.r4
+IL_00b3: mul
+IL_00b4: call System.Single RoR2.Util::ConvertAmplificationPercentageIntoReductionPercentage(System.Single)
+IL_00b9: ldc.r4 0
+IL_00be: ldnull
+IL_00bf: call System.Boolean RoR2.Util::CheckRoll(System.Single,System.Single,RoR2.CharacterMaster)
+IL_00c4: brfalse.s IL_0117
+IL_00c6: newobj System.Void RoR2.EffectData::.ctor()
+IL_00cb: dup
+IL_00cc: ldarg.1
+IL_00cd: ldfld UnityEngine.Vector3 RoR2.DamageInfo::position
+IL_00d2: callvirt System.Void RoR2.EffectData::set_origin(UnityEngine.Vector3)
+IL_00d7: dup
+IL_00d8: ldarg.1
+IL_00d9: ldfld UnityEngine.Vector3 RoR2.DamageInfo::force
+IL_00de: call UnityEngine.Vector3 UnityEngine.Vector3::get_zero()
+IL_00e3: call System.Boolean UnityEngine.Vector3::op_Inequality(UnityEngine.Vector3,UnityEngine.Vector3)
+IL_00e8: brtrue.s IL_00f1
+IL_00ea: call UnityEngine.Vector3 UnityEngine.Random::get_onUnitSphere()
+IL_00ef: br.s IL_00f7
+IL_00f1: ldarg.1
+IL_00f2: ldfld UnityEngine.Vector3 RoR2.DamageInfo::force
+IL_00f7: call UnityEngine.Quaternion RoR2.Util::QuaternionSafeLookRotation(UnityEngine.Vector3)
+IL_00fc: stfld UnityEngine.Quaternion RoR2.EffectData::rotation
+IL_0101: stloc.s V_12
+IL_0103: ldsfld UnityEngine.GameObject RoR2.HealthComponent/AssetReferences::bearEffectPrefab
+IL_0108: ldloc.s V_12
+IL_010a: ldc.i4.1
+IL_010b: call System.Void RoR2.EffectManager::SpawnEffect(UnityEngine.GameObject,RoR2.EffectData,System.Boolean)
+IL_0110: ldarg.1
+IL_0111: ldc.i4.1
+IL_0112: stfld System.Boolean RoR2.DamageInfo::rejected
+IL_0117: ldarg.0
+IL_0118: ldfld RoR2.CharacterBody RoR2.HealthComponent::body
+IL_011d: ldsfld RoR2.BuffDef RoR2.RoR2Content/Buffs::HiddenInvincibility
+IL_0122: callvirt System.Boolean RoR2.CharacterBody::HasBuff(RoR2.BuffDef)
+IL_0127: brfalse.s IL_0134
+IL_0129: ldloc.s V_5
+IL_012b: brtrue.s IL_0134
+IL_012d: ldarg.1
+IL_012e: ldc.i4.1
+IL_012f: stfld System.Boolean RoR2.DamageInfo::rejected
+IL_0134: ldarg.0
+IL_0135: ldfld RoR2.CharacterBody RoR2.HealthComponent::body
+IL_013a: ldsfld RoR2.BuffDef RoR2.RoR2Content/Buffs::Immune
+IL_013f: callvirt System.Boolean RoR2.CharacterBody::HasBuff(RoR2.BuffDef)
+IL_0144: brfalse.s IL_017e
+IL_0146: ldloc.1
+IL_0147: call System.Boolean UnityEngine.Object::op_Implicit(UnityEngine.Object)
+IL_014c: brfalse.s IL_015b
+IL_014e: ldloc.1
+IL_014f: ldsfld RoR2.BuffDef RoR2.RoR2Content/Buffs::GoldEmpowered
+IL_0154: callvirt System.Boolean RoR2.CharacterBody::HasBuff(RoR2.BuffDef)
+IL_0159: brtrue.s IL_017e
+IL_015b: ldsfld UnityEngine.GameObject RoR2.HealthComponent/AssetReferences::damageRejectedPrefab
+IL_0160: newobj System.Void RoR2.EffectData::.ctor()
+IL_0165: dup
+IL_0166: ldarg.1
+IL_0167: ldfld UnityEngine.Vector3 RoR2.DamageInfo::position
+IL_016c: callvirt System.Void RoR2.EffectData::set_origin(UnityEngine.Vector3)
+IL_0171: ldc.i4.1
+IL_0172: call System.Void RoR2.EffectManager::SpawnEffect(UnityEngine.GameObject,RoR2.EffectData,System.Boolean)
+IL_0177: ldarg.1
+IL_0178: ldc.i4.1
+IL_0179: stfld System.Boolean RoR2.DamageInfo::rejected
+IL_017e: ldarg.1
+IL_017f: ldfld System.Boolean RoR2.DamageInfo::rejected
+IL_0184: brtrue.s IL_01f9
+IL_0186: ldarg.0
+IL_0187: ldfld RoR2.CharacterBody RoR2.HealthComponent::body
+IL_018c: ldsfld RoR2.BuffDef RoR2.RoR2Content/Buffs::BodyArmor
+IL_0191: callvirt System.Boolean RoR2.CharacterBody::HasBuff(RoR2.BuffDef)
+IL_0196: brfalse.s IL_01f9
+IL_0198: ldarg.0
+IL_0199: ldfld RoR2.CharacterBody RoR2.HealthComponent::body
+IL_019e: ldsfld RoR2.BuffDef RoR2.RoR2Content/Buffs::BodyArmor
+IL_01a3: callvirt System.Void RoR2.CharacterBody::RemoveBuff(RoR2.BuffDef)
+IL_01a8: newobj System.Void RoR2.EffectData::.ctor()
+IL_01ad: dup
+IL_01ae: ldarg.1
+IL_01af: ldfld UnityEngine.Vector3 RoR2.DamageInfo::position
+IL_01b4: callvirt System.Void RoR2.EffectData::set_origin(UnityEngine.Vector3)
+IL_01b9: dup
+IL_01ba: ldarg.1
+IL_01bb: ldfld UnityEngine.Vector3 RoR2.DamageInfo::force
+IL_01c0: call UnityEngine.Vector3 UnityEngine.Vector3::get_zero()
+IL_01c5: call System.Boolean UnityEngine.Vector3::op_Inequality(UnityEngine.Vector3,UnityEngine.Vector3)
+IL_01ca: brtrue.s IL_01d3
+IL_01cc: call UnityEngine.Vector3 UnityEngine.Random::get_onUnitSphere()
+IL_01d1: br.s IL_01d9
+IL_01d3: ldarg.1
+IL_01d4: ldfld UnityEngine.Vector3 RoR2.DamageInfo::force
+IL_01d9: call UnityEngine.Quaternion RoR2.Util::QuaternionSafeLookRotation(UnityEngine.Vector3)
+IL_01de: stfld UnityEngine.Quaternion RoR2.EffectData::rotation
+IL_01e3: stloc.s V_13
+IL_01e5: ldsfld UnityEngine.GameObject RoR2.HealthComponent/AssetReferences::captainBodyArmorBlockEffectPrefab
+IL_01ea: ldloc.s V_13
+IL_01ec: ldc.i4.1
+IL_01ed: call System.Void RoR2.EffectManager::SpawnEffect(UnityEngine.GameObject,RoR2.EffectData,System.Boolean)
+IL_01f2: ldarg.1
+IL_01f3: ldc.i4.1
+IL_01f4: stfld System.Boolean RoR2.DamageInfo::rejected
+IL_01f9: ldarg.0
+IL_01fa: ldfld RoR2.IOnIncomingDamageServerReceiver[] RoR2.HealthComponent::onIncomingDamageReceivers
+IL_01ff: stloc.s V_14
+IL_0201: ldc.i4.0
+IL_0202: stloc.s V_15
+IL_0204: br.s IL_0217
+IL_0206: ldloc.s V_14
+IL_0208: ldloc.s V_15
+IL_020a: ldelem.ref
+IL_020b: ldarg.1
+IL_020c: callvirt System.Void RoR2.IOnIncomingDamageServerReceiver::OnIncomingDamageServer(RoR2.DamageInfo)
+IL_0211: ldloc.s V_15
+IL_0213: ldc.i4.1
+IL_0214: add
+IL_0215: stloc.s V_15
+IL_0217: ldloc.s V_15
+IL_0219: ldloc.s V_14
+IL_021b: ldlen
+IL_021c: conv.i4
+IL_021d: blt.s IL_0206
+IL_021f: ldarg.1
+IL_0220: ldfld System.Boolean RoR2.DamageInfo::rejected
+IL_0225: brfalse.s IL_0228
+IL_0227: ret
+IL_0228: ldarg.1
+IL_0229: ldfld System.Single RoR2.DamageInfo::damage
+IL_022e: stloc.s V_6
+IL_0230: ldloc.2
+IL_0231: ldarg.0
+IL_0232: ldfld RoR2.CharacterBody RoR2.HealthComponent::body
+IL_0237: callvirt RoR2.TeamComponent RoR2.CharacterBody::get_teamComponent()
+IL_023c: callvirt RoR2.TeamIndex RoR2.TeamComponent::get_teamIndex()
+IL_0241: bne.un.s IL_025b
+IL_0243: ldloc.2
+IL_0244: call RoR2.TeamDef RoR2.TeamCatalog::GetTeamDef(RoR2.TeamIndex)
+IL_0249: stloc.s V_16
+IL_024b: ldloc.s V_16
+IL_024d: brfalse.s IL_025b
+IL_024f: ldloc.s V_6
+IL_0251: ldloc.s V_16
+IL_0253: ldfld System.Single RoR2.TeamDef::friendlyFireScaling
+IL_0258: mul
+IL_0259: stloc.s V_6
+IL_025b: ldloc.s V_6
+IL_025d: ldc.r4 0
+IL_0262: ble.un IL_0803
+IL_0267: ldloc.1
+IL_0268: call System.Boolean UnityEngine.Object::op_Implicit(UnityEngine.Object)
+IL_026d: brfalse IL_0571
+IL_0272: ldloc.1
+IL_0273: callvirt System.Boolean RoR2.CharacterBody::get_canPerformBackstab()
+IL_0278: brfalse.s IL_02eb
+IL_027a: ldarg.1
+IL_027b: ldfld RoR2.DamageType RoR2.DamageInfo::damageType
+IL_0280: ldc.i4 67108864
+IL_0285: and
+IL_0286: ldc.i4 67108864
+IL_028b: beq.s IL_02eb
+IL_028d: ldarg.1
+IL_028e: ldflda RoR2.ProcChainMask RoR2.DamageInfo::procChainMask
+IL_0293: ldc.i4.s 17
+IL_0295: call System.Boolean RoR2.ProcChainMask::HasProc(RoR2.ProcType)
+IL_029a: brtrue.s IL_02af
+IL_029c: ldloc.3
+IL_029d: call UnityEngine.Vector3 UnityEngine.Vector3::op_UnaryNegation(UnityEngine.Vector3)
+IL_02a2: ldarg.0
+IL_02a3: ldfld RoR2.CharacterBody RoR2.HealthComponent::body
+IL_02a8: call System.Boolean RoR2.BackstabManager::IsBackstab(UnityEngine.Vector3,RoR2.CharacterBody)
+IL_02ad: brfalse.s IL_02eb
+IL_02af: ldarg.1
+IL_02b0: ldc.i4.1
+IL_02b1: stfld System.Boolean RoR2.DamageInfo::crit
+IL_02b6: ldarg.1
+IL_02b7: ldflda RoR2.ProcChainMask RoR2.DamageInfo::procChainMask
+IL_02bc: ldc.i4.s 17
+IL_02be: call System.Void RoR2.ProcChainMask::AddProc(RoR2.ProcType)
+IL_02c3: ldsfld UnityEngine.GameObject RoR2.BackstabManager::backstabImpactEffectPrefab
+IL_02c8: call System.Boolean UnityEngine.Object::op_Implicit(UnityEngine.Object)
+IL_02cd: brfalse.s IL_02eb
+IL_02cf: ldsfld UnityEngine.GameObject RoR2.BackstabManager::backstabImpactEffectPrefab
+IL_02d4: ldarg.1
+IL_02d5: ldfld UnityEngine.Vector3 RoR2.DamageInfo::position
+IL_02da: ldarg.1
+IL_02db: ldfld UnityEngine.Vector3 RoR2.DamageInfo::force
+IL_02e0: call UnityEngine.Vector3 UnityEngine.Vector3::op_UnaryNegation(UnityEngine.Vector3)
+IL_02e5: ldc.i4.1
+IL_02e6: call System.Void RoR2.EffectManager::SimpleImpactEffect(UnityEngine.GameObject,UnityEngine.Vector3,UnityEngine.Vector3,System.Boolean)
+IL_02eb: ldloc.1
+IL_02ec: callvirt RoR2.CharacterMaster RoR2.CharacterBody::get_master()
+IL_02f1: stloc.0
+IL_02f2: ldloc.0
+IL_02f3: call System.Boolean UnityEngine.Object::op_Implicit(UnityEngine.Object)
+IL_02f8: brfalse IL_0571
+IL_02fd: ldloc.0
+IL_02fe: callvirt RoR2.Inventory RoR2.CharacterMaster::get_inventory()
+IL_0303: call System.Boolean UnityEngine.Object::op_Implicit(UnityEngine.Object)
+IL_0308: brfalse IL_0571
+IL_030d: ldloc.s V_4
+IL_030f: ldarg.0
+IL_0310: call System.Single RoR2.HealthComponent::get_fullCombinedHealth()
+IL_0315: ldc.r4 0,9
+IL_031a: mul
+IL_031b: blt.un.s IL_0364
+IL_031d: ldloc.0
+IL_031e: callvirt RoR2.Inventory RoR2.CharacterMaster::get_inventory()
+IL_0323: ldsfld RoR2.ItemDef RoR2.RoR2Content/Items::Crowbar
+IL_0328: callvirt System.Int32 RoR2.Inventory::GetItemCount(RoR2.ItemDef)
+IL_032d: stloc.s V_17
+IL_032f: ldloc.s V_17
+IL_0331: ldc.i4.0
+IL_0332: ble.s IL_0364
+IL_0334: ldloc.s V_6
+IL_0336: ldc.r4 1
+IL_033b: ldc.r4 0,75
+IL_0340: ldloc.s V_17
+IL_0342: conv.r4
+IL_0343: mul
+IL_0344: add
+IL_0345: mul
+IL_0346: stloc.s V_6
+IL_0348: ldsfld UnityEngine.GameObject RoR2.HealthComponent/AssetReferences::crowbarImpactEffectPrefab
+IL_034d: ldarg.1
+IL_034e: ldfld UnityEngine.Vector3 RoR2.DamageInfo::position
+IL_0353: ldarg.1
+IL_0354: ldfld UnityEngine.Vector3 RoR2.DamageInfo::force
+IL_0359: call UnityEngine.Vector3 UnityEngine.Vector3::op_UnaryNegation(UnityEngine.Vector3)
+IL_035e: ldc.i4.1
+IL_035f: call System.Void RoR2.EffectManager::SimpleImpactEffect(UnityEngine.GameObject,UnityEngine.Vector3,UnityEngine.Vector3,System.Boolean)
+IL_0364: ldloc.0
+IL_0365: callvirt RoR2.Inventory RoR2.CharacterMaster::get_inventory()
+IL_036a: ldsfld RoR2.ItemDef RoR2.RoR2Content/Items::NearbyDamageBonus
+IL_036f: callvirt System.Int32 RoR2.Inventory::GetItemCount(RoR2.ItemDef)
+IL_0374: stloc.s V_18
+IL_0376: ldloc.s V_18
+IL_0378: ldc.i4.0
+IL_0379: ble.s IL_03b7
+IL_037b: ldloca.s V_3
+IL_037d: call System.Single UnityEngine.Vector3::get_sqrMagnitude()
+IL_0382: ldc.r4 169
+IL_0387: bgt.un.s IL_03b7
+IL_0389: ldarg.1
+IL_038a: ldc.i4.s 9
+IL_038c: stfld RoR2.DamageColorIndex RoR2.DamageInfo::damageColorIndex
+IL_0391: ldloc.s V_6
+IL_0393: ldc.r4 1
+IL_0398: ldloc.s V_18
+IL_039a: conv.r4
+IL_039b: ldc.r4 0,2
+IL_03a0: mul
+IL_03a1: add
+IL_03a2: mul
+IL_03a3: stloc.s V_6
+IL_03a5: ldsfld UnityEngine.GameObject RoR2.HealthComponent/AssetReferences::diamondDamageBonusImpactEffectPrefab
+IL_03aa: ldarg.1
+IL_03ab: ldfld UnityEngine.Vector3 RoR2.DamageInfo::position
+IL_03b0: ldloc.3
+IL_03b1: ldc.i4.1
+IL_03b2: call System.Void RoR2.EffectManager::SimpleImpactEffect(UnityEngine.GameObject,UnityEngine.Vector3,UnityEngine.Vector3,System.Boolean)
+IL_03b7: ldarg.1
+IL_03b8: ldfld System.Single RoR2.DamageInfo::procCoefficient
+IL_03bd: ldc.r4 0
+IL_03c2: ble.un IL_0516
+IL_03c7: ldloc.0
+IL_03c8: callvirt RoR2.Inventory RoR2.CharacterMaster::get_inventory()
+IL_03cd: ldsfld RoR2.ItemDef RoR2.RoR2Content/Items::ArmorReductionOnHit
+IL_03d2: callvirt System.Int32 RoR2.Inventory::GetItemCount(RoR2.ItemDef)
+IL_03d7: stloc.s V_19
+IL_03d9: ldloc.s V_19
+IL_03db: ldc.i4.0
+IL_03dc: ble IL_0480
+IL_03e1: ldarg.0
+IL_03e2: ldfld RoR2.CharacterBody RoR2.HealthComponent::body
+IL_03e7: ldsfld RoR2.BuffDef RoR2.RoR2Content/Buffs::Pulverized
+IL_03ec: callvirt System.Boolean RoR2.CharacterBody::HasBuff(RoR2.BuffDef)
+IL_03f1: brtrue IL_0480
+IL_03f6: ldarg.0
+IL_03f7: ldfld RoR2.CharacterBody RoR2.HealthComponent::body
+IL_03fc: ldsfld RoR2.BuffDef RoR2.RoR2Content/Buffs::PulverizeBuildup
+IL_0401: ldc.r4 2
+IL_0406: ldarg.1
+IL_0407: ldfld System.Single RoR2.DamageInfo::procCoefficient
+IL_040c: mul
+IL_040d: callvirt System.Void RoR2.CharacterBody::AddTimedBuff(RoR2.BuffDef,System.Single)
+IL_0412: ldarg.0
+IL_0413: ldfld RoR2.CharacterBody RoR2.HealthComponent::body
+IL_0418: ldsfld RoR2.BuffDef RoR2.RoR2Content/Buffs::PulverizeBuildup
+IL_041d: callvirt System.Int32 RoR2.CharacterBody::GetBuffCount(RoR2.BuffDef)
+IL_0422: ldc.i4.5
+IL_0423: blt.s IL_0480
+IL_0425: ldarg.0
+IL_0426: ldfld RoR2.CharacterBody RoR2.HealthComponent::body
+IL_042b: ldsfld RoR2.BuffDef RoR2.RoR2Content/Buffs::PulverizeBuildup
+IL_0430: callvirt System.Void RoR2.CharacterBody::ClearTimedBuffs(RoR2.BuffDef)
+IL_0435: ldarg.0
+IL_0436: ldfld RoR2.CharacterBody RoR2.HealthComponent::body
+IL_043b: ldsfld RoR2.BuffDef RoR2.RoR2Content/Buffs::Pulverized
+IL_0440: ldc.r4 8
+IL_0445: ldloc.s V_19
+IL_0447: conv.r4
+IL_0448: mul
+IL_0449: callvirt System.Void RoR2.CharacterBody::AddTimedBuff(RoR2.BuffDef,System.Single)
+IL_044e: ldsfld UnityEngine.GameObject RoR2.HealthComponent/AssetReferences::pulverizedEffectPrefab
+IL_0453: newobj System.Void RoR2.EffectData::.ctor()
+IL_0458: dup
+IL_0459: ldarg.0
+IL_045a: ldfld RoR2.CharacterBody RoR2.HealthComponent::body
+IL_045f: callvirt UnityEngine.Vector3 RoR2.CharacterBody::get_corePosition()
+IL_0464: callvirt System.Void RoR2.EffectData::set_origin(UnityEngine.Vector3)
+IL_0469: dup
+IL_046a: ldarg.0
+IL_046b: ldfld RoR2.CharacterBody RoR2.HealthComponent::body
+IL_0470: callvirt System.Single RoR2.CharacterBody::get_radius()
+IL_0475: stfld System.Single RoR2.EffectData::scale
+IL_047a: ldc.i4.1
+IL_047b: call System.Void RoR2.EffectManager::SpawnEffect(UnityEngine.GameObject,RoR2.EffectData,System.Boolean)
+IL_0480: ldarg.0
+IL_0481: ldfld RoR2.CharacterBody RoR2.HealthComponent::body
+IL_0486: ldsfld RoR2.BuffDef RoR2.RoR2Content/Buffs::MercExpose
+IL_048b: callvirt System.Boolean RoR2.CharacterBody::HasBuff(RoR2.BuffDef)
+IL_0490: brfalse IL_0516
+IL_0495: ldarg.0
+IL_0496: ldfld RoR2.CharacterBody RoR2.HealthComponent::body
+IL_049b: ldsfld RoR2.BuffDef RoR2.RoR2Content/Buffs::MercExpose
+IL_04a0: callvirt System.Void RoR2.CharacterBody::RemoveBuff(RoR2.BuffDef)
+IL_04a5: ldloc.1
+IL_04a6: call System.Boolean UnityEngine.Object::op_Implicit(UnityEngine.Object)
+IL_04ab: brfalse.s IL_0516
+IL_04ad: ldloc.1
+IL_04ae: ldfld RoR2.BodyIndex RoR2.CharacterBody::bodyIndex
+IL_04b3: ldstr "MercBody"
+IL_04b8: call RoR2.BodyIndex RoR2.BodyCatalog::FindBodyIndex(System.String)
+IL_04bd: bne.un.s IL_0516
+IL_04bf: ldloc.1
+IL_04c0: callvirt System.Single RoR2.CharacterBody::get_damage()
+IL_04c5: ldc.r4 3,5
+IL_04ca: mul
+IL_04cb: stloc.s V_20
+IL_04cd: ldloc.s V_6
+IL_04cf: ldloc.s V_20
+IL_04d1: add
+IL_04d2: stloc.s V_6
+IL_04d4: ldarg.1
+IL_04d5: dup
+IL_04d6: ldfld System.Single RoR2.DamageInfo::damage
+IL_04db: ldloc.s V_20
+IL_04dd: add
+IL_04de: stfld System.Single RoR2.DamageInfo::damage
+IL_04e3: ldloc.1
+IL_04e4: callvirt RoR2.SkillLocator RoR2.CharacterBody::get_skillLocator()
+IL_04e9: stloc.s V_21
+IL_04eb: ldloc.s V_21
+IL_04ed: call System.Boolean UnityEngine.Object::op_Implicit(UnityEngine.Object)
+IL_04f2: brfalse.s IL_0500
+IL_04f4: ldloc.s V_21
+IL_04f6: ldc.r4 1
+IL_04fb: callvirt System.Void RoR2.SkillLocator::DeductCooldownFromAllSkillsServer(System.Single)
+IL_0500: ldsfld UnityEngine.GameObject RoR2.HealthComponent/AssetReferences::mercExposeConsumeEffectPrefab
+IL_0505: ldarg.1
+IL_0506: ldfld UnityEngine.Vector3 RoR2.DamageInfo::position
+IL_050b: call UnityEngine.Vector3 UnityEngine.Vector3::get_up()
+IL_0510: ldc.i4.1
+IL_0511: call System.Void RoR2.EffectManager::SimpleImpactEffect(UnityEngine.GameObject,UnityEngine.Vector3,UnityEngine.Vector3,System.Boolean)
+IL_0516: ldarg.0
+IL_0517: ldfld RoR2.CharacterBody RoR2.HealthComponent::body
+IL_051c: callvirt System.Boolean RoR2.CharacterBody::get_isBoss()
+IL_0521: brfalse.s IL_0571
+IL_0523: ldloc.0
+IL_0524: callvirt RoR2.Inventory RoR2.CharacterMaster::get_inventory()
+IL_0529: ldsfld RoR2.ItemDef RoR2.RoR2Content/Items::BossDamageBonus
+IL_052e: callvirt System.Int32 RoR2.Inventory::GetItemCount(RoR2.ItemDef)
+IL_0533: stloc.s V_22
+IL_0535: ldloc.s V_22
+IL_0537: ldc.i4.0
+IL_0538: ble.s IL_0571
+IL_053a: ldloc.s V_6
+IL_053c: ldc.r4 1
+IL_0541: ldc.r4 0,2
+IL_0546: ldloc.s V_22
+IL_0548: conv.r4
+IL_0549: mul
+IL_054a: add
+IL_054b: mul
+IL_054c: stloc.s V_6
+IL_054e: ldarg.1
+IL_054f: ldc.i4.5
+IL_0550: stfld RoR2.DamageColorIndex RoR2.DamageInfo::damageColorIndex
+IL_0555: ldsfld UnityEngine.GameObject RoR2.HealthComponent/AssetReferences::bossDamageBonusImpactEffectPrefab
+IL_055a: ldarg.1
+IL_055b: ldfld UnityEngine.Vector3 RoR2.DamageInfo::position
+IL_0560: ldarg.1
+IL_0561: ldfld UnityEngine.Vector3 RoR2.DamageInfo::force
+IL_0566: call UnityEngine.Vector3 UnityEngine.Vector3::op_UnaryNegation(UnityEngine.Vector3)
+IL_056b: ldc.i4.1
+IL_056c: call System.Void RoR2.EffectManager::SimpleImpactEffect(UnityEngine.GameObject,UnityEngine.Vector3,UnityEngine.Vector3,System.Boolean)
+IL_0571: ldarg.1
+IL_0572: ldfld System.Boolean RoR2.DamageInfo::crit
+IL_0577: brfalse.s IL_0583
+IL_0579: ldloc.s V_6
+IL_0000: ldfld RoR2.CharacterBody RoR2.HealthComponent::body
+IL_0000: ldarg.0
+IL_0000: ldfld RoR2.CharacterBody RoR2.HealthComponent::body
+IL_0000: ldc.i4 0
+IL_0000: call T MonoMod.Cil.RuntimeILReferenceBag/InnerBag`1<System.Func`2<RoR2.HealthComponent,System.Single>>::Get(System.Int32)
+IL_0000: call TResult MonoMod.Cil.RuntimeILReferenceBag/FastDelegateInvokers::Invoke<RoR2.HealthComponent,System.Single>(T1,MonoMod.Cil.RuntimeILReferenceBag/FastDelegateInvokers/Func`2<T1,TResult>)
+IL_0580: mul
+IL_0581: stloc.s V_6
+IL_0583: ldarg.1
+IL_0584: ldfld RoR2.DamageType RoR2.DamageInfo::damageType
+IL_0589: ldc.i4.s 16
+IL_058b: and
+IL_058c: brfalse.s IL_059f
+IL_058e: ldloc.s V_6
+IL_0590: ldc.r4 1,5
+IL_0595: mul
+IL_0596: stloc.s V_6
+IL_0598: ldarg.1
+IL_0599: ldc.i4.5
+IL_059a: stfld RoR2.DamageColorIndex RoR2.DamageInfo::damageColorIndex
+IL_059f: ldarg.0
+IL_05a0: ldfld RoR2.CharacterBody RoR2.HealthComponent::body
+IL_05a5: ldsfld RoR2.BuffDef RoR2.RoR2Content/Buffs::DeathMark
+IL_05aa: callvirt System.Boolean RoR2.CharacterBody::HasBuff(RoR2.BuffDef)
+IL_05af: brfalse.s IL_05c2
+IL_05b1: ldloc.s V_6
+IL_05b3: ldc.r4 1,5
+IL_05b8: mul
+IL_05b9: stloc.s V_6
+IL_05bb: ldarg.1
+IL_05bc: ldc.i4.7
+IL_05bd: stfld RoR2.DamageColorIndex RoR2.DamageInfo::damageColorIndex
+IL_05c2: ldloc.s V_5
+IL_05c4: brtrue IL_06ea
+IL_05c9: ldarg.0
+IL_05ca: ldfld RoR2.CharacterBody RoR2.HealthComponent::body
+IL_05cf: callvirt System.Single RoR2.CharacterBody::get_armor()
+IL_05d4: stloc.s V_23
+IL_05d6: ldloc.s V_23
+IL_05d8: ldarg.0
+IL_05d9: ldfld System.Single RoR2.HealthComponent::adaptiveArmorValue
+IL_05de: add
+IL_05df: stloc.s V_23
+IL_05e1: ldarg.1
+IL_05e2: ldfld RoR2.DamageType RoR2.DamageInfo::damageType
+IL_05e7: ldc.i4 131072
+IL_05ec: and
+IL_05ed: ldc.i4.0
+IL_05ee: cgt.un
+IL_05f0: stloc.s V_24
+IL_05f2: ldarg.0
+IL_05f3: ldfld RoR2.CharacterBody RoR2.HealthComponent::body
+IL_05f8: ldfld RoR2.CharacterBody/BodyFlags RoR2.CharacterBody::bodyFlags
+IL_05fd: ldc.i4.s 64
+IL_05ff: and
+IL_0600: ldc.i4.0
+IL_0601: cgt.un
+IL_0603: ldloc.s V_24
+IL_0605: and
+IL_0606: brfalse.s IL_0612
+IL_0608: ldloc.s V_23
+IL_060a: ldc.r4 300
+IL_060f: add
+IL_0610: stloc.s V_23
+IL_0612: ldloc.s V_23
+IL_0614: ldc.r4 0
+IL_0619: bge.s IL_0631
+IL_061b: ldc.r4 2
+IL_0620: ldc.r4 100
+IL_0625: ldc.r4 100
+IL_062a: ldloc.s V_23
+IL_062c: sub
+IL_062d: div
+IL_062e: sub
+IL_062f: br.s IL_0642
+IL_0631: ldc.r4 1
+IL_0636: ldloc.s V_23
+IL_0638: ldloc.s V_23
+IL_063a: ldc.r4 100
+IL_063f: add
+IL_0640: div
+IL_0641: sub
+IL_0642: stloc.s V_25
+IL_0644: ldc.r4 1
+IL_0649: ldloc.s V_6
+IL_064b: ldloc.s V_25
+IL_064d: mul
+IL_064e: call System.Single UnityEngine.Mathf::Max(System.Single,System.Single)
+IL_0653: stloc.s V_6
+IL_0655: ldarg.0
+IL_0656: ldflda RoR2.HealthComponent/ItemCounts RoR2.HealthComponent::itemCounts
+IL_065b: ldfld System.Int32 RoR2.HealthComponent/ItemCounts::armorPlate
+IL_0660: ldc.i4.0
+IL_0661: ble.s IL_069e
+IL_0663: ldc.r4 1
+IL_0668: ldloc.s V_6
+IL_066a: ldc.r4 5
+IL_066f: ldarg.0
+IL_0670: ldflda RoR2.HealthComponent/ItemCounts RoR2.HealthComponent::itemCounts
+IL_0675: ldfld System.Int32 RoR2.HealthComponent/ItemCounts::armorPlate
+IL_067a: conv.r4
+IL_067b: mul
+IL_067c: sub
+IL_067d: call System.Single UnityEngine.Mathf::Max(System.Single,System.Single)
+IL_0682: stloc.s V_6
+IL_0684: ldstr "NetworkSoundEventDefs/nseArmorPlateBlock"
+IL_0689: call T UnityEngine.Resources::Load<RoR2.NetworkSoundEventDef>(System.String)
+IL_068e: callvirt RoR2.Audio.NetworkSoundEventIndex RoR2.NetworkSoundEventDef::get_index()
+IL_0693: ldarg.0
+IL_0694: call UnityEngine.GameObject UnityEngine.Component::get_gameObject()
+IL_0699: call System.Void RoR2.Audio.EntitySoundManager::EmitSoundServer(RoR2.Audio.NetworkSoundEventIndex,UnityEngine.GameObject)
+IL_069e: ldarg.0
+IL_069f: ldflda RoR2.HealthComponent/ItemCounts RoR2.HealthComponent::itemCounts
+IL_06a4: ldfld System.Int32 RoR2.HealthComponent/ItemCounts::parentEgg
+IL_06a9: ldc.i4.0
+IL_06aa: ble.s IL_06ea
+IL_06ac: ldarg.0
+IL_06ad: ldarg.0
+IL_06ae: ldflda RoR2.HealthComponent/ItemCounts RoR2.HealthComponent::itemCounts
+IL_06b3: ldfld System.Int32 RoR2.HealthComponent/ItemCounts::parentEgg
+IL_06b8: conv.r4
+IL_06b9: ldc.r4 15
+IL_06be: mul
+IL_06bf: ldloca.s V_26
+IL_06c1: initobj RoR2.ProcChainMask
+IL_06c7: ldloc.s V_26
+IL_06c9: ldc.i4.1
+IL_06ca: call System.Single RoR2.HealthComponent::Heal(System.Single,RoR2.ProcChainMask,System.Boolean)
+IL_06cf: pop
+IL_06d0: ldstr "NetworkSoundEventDefs/nseParentEggHeal"
+IL_06d5: call T UnityEngine.Resources::Load<RoR2.NetworkSoundEventDef>(System.String)
+IL_06da: callvirt RoR2.Audio.NetworkSoundEventIndex RoR2.NetworkSoundEventDef::get_index()
+IL_06df: ldarg.0
+IL_06e0: call UnityEngine.GameObject UnityEngine.Component::get_gameObject()
+IL_06e5: call System.Void RoR2.Audio.EntitySoundManager::EmitSoundServer(RoR2.Audio.NetworkSoundEventIndex,UnityEngine.GameObject)
+IL_06ea: ldarg.1
+IL_06eb: ldfld RoR2.DamageType RoR2.DamageInfo::damageType
+IL_06f0: ldc.i4.s 64
+IL_06f2: and
+IL_06f3: brfalse.s IL_0733
+IL_06f5: ldarg.1
+IL_06f6: dup
+IL_06f7: ldfld UnityEngine.Vector3 RoR2.DamageInfo::force
+IL_06fc: ldc.r4 0,5
+IL_0701: call UnityEngine.Vector3 UnityEngine.Vector3::op_Multiply(UnityEngine.Vector3,System.Single)
+IL_0706: stfld UnityEngine.Vector3 RoR2.DamageInfo::force
+IL_070b: ldarg.0
+IL_070c: call T UnityEngine.Component::GetComponent<RoR2.IBarrier>()
+IL_0711: stloc.s V_27
+IL_0713: ldloc.s V_27
+IL_0715: brfalse.s IL_0721
+IL_0717: ldloc.s V_27
+IL_0719: ldarg.1
+IL_071a: ldloc.s V_6
+IL_071c: callvirt System.Void RoR2.IBarrier::BlockedDamage(RoR2.DamageInfo,System.Single)
+IL_0721: ldarg.1
+IL_0722: ldc.r4 0
+IL_0727: stfld System.Single RoR2.DamageInfo::procCoefficient
+IL_072c: ldc.r4 0
+IL_0731: stloc.s V_6
+IL_0733: ldarg.0
+IL_0734: ldfld RoR2.CharacterBody RoR2.HealthComponent::body
+IL_0739: callvirt System.Boolean RoR2.CharacterBody::get_hasOneShotProtection()
+IL_073e: brfalse.s IL_07a4
+IL_0740: ldarg.1
+IL_0741: ldfld RoR2.DamageType RoR2.DamageInfo::damageType
+IL_0746: ldc.i4 262144
+IL_074b: and
+IL_074c: ldc.i4 262144
+IL_0751: beq.s IL_07a4
+IL_0753: ldarg.0
+IL_0754: call System.Single RoR2.HealthComponent::get_fullCombinedHealth()
+IL_0759: ldarg.0
+IL_075a: ldfld System.Single RoR2.HealthComponent::barrier
+IL_075f: add
+IL_0760: ldc.r4 1
+IL_0765: ldarg.0
+IL_0766: ldfld RoR2.CharacterBody RoR2.HealthComponent::body
+IL_076b: callvirt System.Single RoR2.CharacterBody::get_oneShotProtectionFraction()
+IL_0770: sub
+IL_0771: mul
+IL_0772: stloc.s V_28
+IL_0774: ldc.r4 0
+IL_0779: ldloc.s V_28
+IL_077b: ldarg.0
+IL_077c: ldfld System.Single RoR2.HealthComponent::serverDamageTakenThisUpdate
+IL_0781: sub
+IL_0782: call System.Single UnityEngine.Mathf::Max(System.Single,System.Single)
+IL_0787: stloc.s V_29
+IL_0789: ldloc.s V_6
+IL_078b: stloc.s V_30
+IL_078d: ldloc.s V_6
+IL_078f: ldloc.s V_29
+IL_0791: call System.Single UnityEngine.Mathf::Min(System.Single,System.Single)
+IL_0796: stloc.s V_6
+IL_0798: ldloc.s V_6
+IL_079a: ldloc.s V_30
+IL_079c: beq.s IL_07a4
+IL_079e: ldarg.0
+IL_079f: call System.Void RoR2.HealthComponent::TriggerOneShotProtection()
+IL_07a4: ldarg.1
+IL_07a5: ldfld RoR2.DamageType RoR2.DamageInfo::damageType
+IL_07aa: ldc.i4 524288
+IL_07af: and
+IL_07b0: ldc.i4.0
+IL_07b1: cgt.un
+IL_07b3: brfalse.s IL_07d3
+IL_07b5: ldc.r4 3
+IL_07ba: ldc.r4 1
+IL_07bf: ldarg.0
+IL_07c0: call System.Single RoR2.HealthComponent::get_combinedHealthFraction()
+IL_07c5: call System.Single UnityEngine.Mathf::Lerp(System.Single,System.Single,System.Single)
+IL_07ca: stloc.s V_31
+IL_07cc: ldloc.s V_6
+IL_07ce: ldloc.s V_31
+IL_07d0: mul
+IL_07d1: stloc.s V_6
+IL_07d3: ldarg.0
+IL_07d4: ldfld RoR2.CharacterBody RoR2.HealthComponent::body
+IL_07d9: ldsfld RoR2.BuffDef RoR2.RoR2Content/Buffs::LunarShell
+IL_07de: callvirt System.Boolean RoR2.CharacterBody::HasBuff(RoR2.BuffDef)
+IL_07e3: brfalse.s IL_0803
+IL_07e5: ldloc.s V_6
+IL_07e7: ldarg.0
+IL_07e8: call System.Single RoR2.HealthComponent::get_fullHealth()
+IL_07ed: ldc.r4 0,1
+IL_07f2: mul
+IL_07f3: ble.un.s IL_0803
+IL_07f5: ldarg.0
+IL_07f6: call System.Single RoR2.HealthComponent::get_fullHealth()
+IL_07fb: ldc.r4 0,1
+IL_0800: mul
+IL_0801: stloc.s V_6
+IL_0803: ldarg.1
+IL_0804: ldfld RoR2.DamageType RoR2.DamageInfo::damageType
+IL_0809: ldc.i4.8
+IL_080a: and
+IL_080b: brfalse.s IL_0822
+IL_080d: ldarg.0
+IL_080e: ldfld RoR2.CharacterBody RoR2.HealthComponent::body
+IL_0813: ldsfld RoR2.BuffDef RoR2.RoR2Content/Buffs::Slow50
+IL_0818: ldc.r4 2
+IL_081d: callvirt System.Void RoR2.CharacterBody::AddTimedBuff(RoR2.BuffDef,System.Single)
+IL_0822: ldarg.1
+IL_0823: ldfld RoR2.DamageType RoR2.DamageInfo::damageType
+IL_0828: ldc.i4 512
+IL_082d: and
+IL_082e: brfalse.s IL_0854
+IL_0830: ldarg.0
+IL_0831: ldfld RoR2.CharacterBody RoR2.HealthComponent::body
+IL_0836: ldfld RoR2.CharacterBody/BodyFlags RoR2.CharacterBody::bodyFlags
+IL_083b: ldc.i4.8
+IL_083c: and
+IL_083d: brtrue.s IL_0854
+IL_083f: ldarg.0
+IL_0840: ldfld RoR2.CharacterBody RoR2.HealthComponent::body
+IL_0845: ldsfld RoR2.BuffDef RoR2.RoR2Content/Buffs::ClayGoo
+IL_084a: ldc.r4 2
+IL_084f: callvirt System.Void RoR2.CharacterBody::AddTimedBuff(RoR2.BuffDef,System.Single)
+IL_0854: ldarg.1
+IL_0855: ldfld RoR2.DamageType RoR2.DamageInfo::damageType
+IL_085a: ldc.i4 32768
+IL_085f: and
+IL_0860: brfalse.s IL_0877
+IL_0862: ldarg.0
+IL_0863: ldfld RoR2.CharacterBody RoR2.HealthComponent::body
+IL_0868: ldsfld RoR2.BuffDef RoR2.RoR2Content/Buffs::NullifyStack
+IL_086d: ldc.r4 8
+IL_0872: callvirt System.Void RoR2.CharacterBody::AddTimedBuff(RoR2.BuffDef,System.Single)
+IL_0877: ldarg.1
+IL_0878: ldfld RoR2.DamageType RoR2.DamageInfo::damageType
+IL_087d: ldc.i4 4194304
+IL_0882: and
+IL_0883: brtrue.s IL_089a
+IL_0885: ldloc.1
+IL_0886: call System.Boolean UnityEngine.Object::op_Implicit(UnityEngine.Object)
+IL_088b: brfalse.s IL_08af
+IL_088d: ldloc.1
+IL_088e: ldsfld RoR2.BuffDef RoR2.RoR2Content/Buffs::AffixLunar
+IL_0893: callvirt System.Boolean RoR2.CharacterBody::HasBuff(RoR2.BuffDef)
+IL_0898: brfalse.s IL_08af
+IL_089a: ldarg.0
+IL_089b: ldfld RoR2.CharacterBody RoR2.HealthComponent::body
+IL_08a0: ldsfld RoR2.BuffDef RoR2.RoR2Content/Buffs::Cripple
+IL_08a5: ldc.r4 3
+IL_08aa: callvirt System.Void RoR2.CharacterBody::AddTimedBuff(RoR2.BuffDef,System.Single)
+IL_08af: ldarg.1
+IL_08b0: ldfld RoR2.DamageType RoR2.DamageInfo::damageType
+IL_08b5: ldc.i4 8388608
+IL_08ba: and
+IL_08bb: brfalse.s IL_08dc
+IL_08bd: ldstr "Adding expose"
+IL_08c2: call T[] System.Array::Empty<System.Object>()
+IL_08c7: call System.Void UnityEngine.Debug::LogFormat(System.String,System.Object[])
+IL_08cc: ldarg.0
+IL_08cd: ldfld RoR2.CharacterBody RoR2.HealthComponent::body
+IL_08d2: ldsfld RoR2.BuffDef RoR2.RoR2Content/Buffs::MercExpose
+IL_08d7: callvirt System.Void RoR2.CharacterBody::AddBuff(RoR2.BuffDef)
+IL_08dc: ldarg.0
+IL_08dd: ldfld RoR2.CharacterBody RoR2.HealthComponent::body
+IL_08e2: callvirt RoR2.CharacterMaster RoR2.CharacterBody::get_master()
+IL_08e7: stloc.s V_32
+IL_08e9: ldarg.0
+IL_08ea: ldflda RoR2.HealthComponent/ItemCounts RoR2.HealthComponent::itemCounts
+IL_08ef: ldfld System.Int32 RoR2.HealthComponent/ItemCounts::goldOnHit
+IL_08f4: ldc.i4.0
+IL_08f5: ble.s IL_0967
+IL_08f7: ldloc.s V_32
+IL_08f9: call System.Boolean UnityEngine.Object::op_Implicit(UnityEngine.Object)
+IL_08fe: brfalse.s IL_0967
+IL_0900: ldloc.s V_6
+IL_0902: ldarg.0
+IL_0903: call System.Single RoR2.HealthComponent::get_fullCombinedHealth()
+IL_0908: div
+IL_0909: ldloc.s V_32
+IL_090b: callvirt System.UInt32 RoR2.CharacterMaster::get_money()
+IL_0910: conv.r.un
+IL_0911: conv.r4
+IL_0912: mul
+IL_0913: ldarg.0
+IL_0914: ldflda RoR2.HealthComponent/ItemCounts RoR2.HealthComponent::itemCounts
+IL_0919: ldfld System.Int32 RoR2.HealthComponent/ItemCounts::goldOnHit
+IL_091e: conv.r4
+IL_091f: mul
+IL_0920: ldarg.1
+IL_0921: ldfld System.Single RoR2.DamageInfo::damage
+IL_0926: pop
+IL_0927: ldarg.0
+IL_0928: ldfld RoR2.HealthComponent/ItemCounts RoR2.HealthComponent::itemCounts
+IL_092d: pop
+IL_092e: conv.u4
+IL_092f: stloc.s V_33
+IL_0931: ldloc.s V_32
+IL_0933: ldc.r4 0
+IL_0938: ldloc.s V_32
+IL_093a: callvirt System.UInt32 RoR2.CharacterMaster::get_money()
+IL_093f: conv.r.un
+IL_0940: conv.r4
+IL_0941: ldloc.s V_33
+IL_0943: conv.r.un
+IL_0944: conv.r4
+IL_0945: sub
+IL_0946: call System.Single UnityEngine.Mathf::Max(System.Single,System.Single)
+IL_094b: conv.u4
+IL_094c: callvirt System.Void RoR2.CharacterMaster::set_money(System.UInt32)
+IL_0951: ldsfld UnityEngine.GameObject RoR2.HealthComponent/AssetReferences::coinImpactEffectPrefab
+IL_0956: ldarg.1
+IL_0957: ldfld UnityEngine.Vector3 RoR2.DamageInfo::position
+IL_095c: call UnityEngine.Vector3 UnityEngine.Vector3::get_up()
+IL_0961: ldc.i4.1
+IL_0962: call System.Void RoR2.EffectManager::SimpleImpactEffect(UnityEngine.GameObject,UnityEngine.Vector3,UnityEngine.Vector3,System.Boolean)
+IL_0967: ldarg.0
+IL_0968: ldflda RoR2.HealthComponent/ItemCounts RoR2.HealthComponent::itemCounts
+IL_096d: ldfld System.Int32 RoR2.HealthComponent/ItemCounts::adaptiveArmor
+IL_0972: ldc.i4.0
+IL_0973: ble.s IL_09b2
+IL_0975: ldloc.s V_6
+IL_0977: ldarg.0
+IL_0978: call System.Single RoR2.HealthComponent::get_fullCombinedHealth()
+IL_097d: div
+IL_097e: ldc.r4 100
+IL_0983: mul
+IL_0984: ldc.r4 30
+IL_0989: mul
+IL_098a: ldarg.0
+IL_098b: ldflda RoR2.HealthComponent/ItemCounts RoR2.HealthComponent::itemCounts
+IL_0990: ldfld System.Int32 RoR2.HealthComponent/ItemCounts::adaptiveArmor
+IL_0995: conv.r4
+IL_0996: mul
+IL_0997: stloc.s V_34
+IL_0999: ldarg.0
+IL_099a: ldarg.0
+IL_099b: ldfld System.Single RoR2.HealthComponent::adaptiveArmorValue
+IL_09a0: ldloc.s V_34
+IL_09a2: add
+IL_09a3: ldc.r4 400
+IL_09a8: call System.Single UnityEngine.Mathf::Min(System.Single,System.Single)
+IL_09ad: stfld System.Single RoR2.HealthComponent::adaptiveArmorValue
+IL_09b2: ldloc.s V_6
+IL_09b4: stloc.s V_7
+IL_09b6: ldarg.0
+IL_09b7: ldfld RoR2.CharacterBody RoR2.HealthComponent::body
+IL_09bc: callvirt RoR2.TeamComponent RoR2.CharacterBody::get_teamComponent()
+IL_09c1: callvirt RoR2.TeamIndex RoR2.TeamComponent::get_teamIndex()
+IL_09c6: ldc.i4.1
+IL_09c7: bne.un.s IL_0a18
+IL_09c9: call RoR2.Run RoR2.Run::get_instance()
+IL_09ce: callvirt RoR2.DifficultyIndex RoR2.Run::get_selectedDifficulty()
+IL_09d3: ldc.i4.s 10
+IL_09d5: blt.s IL_0a18
+IL_09d7: ldloc.s V_7
+IL_09d9: ldarg.0
+IL_09da: call System.Single RoR2.HealthComponent::get_fullCombinedHealth()
+IL_09df: div
+IL_09e0: ldc.r4 100
+IL_09e5: mul
+IL_09e6: ldc.r4 0,4
+IL_09eb: stloc.s V_35
+IL_09ed: ldloc.s V_35
+IL_09ef: mul
+IL_09f0: call System.Int32 UnityEngine.Mathf::FloorToInt(System.Single)
+IL_09f5: stloc.s V_36
+IL_09f7: ldc.i4.0
+IL_09f8: stloc.s V_37
+IL_09fa: br.s IL_0a12
+IL_09fc: ldarg.0
+IL_09fd: ldfld RoR2.CharacterBody RoR2.HealthComponent::body
+IL_0a02: ldsfld RoR2.BuffDef RoR2.RoR2Content/Buffs::PermanentCurse
+IL_0a07: callvirt System.Void RoR2.CharacterBody::AddBuff(RoR2.BuffDef)
+IL_0a0c: ldloc.s V_37
+IL_0a0e: ldc.i4.1
+IL_0a0f: add
+IL_0a10: stloc.s V_37
+IL_0a12: ldloc.s V_37
+IL_0a14: ldloc.s V_36
+IL_0a16: blt.s IL_09fc
+IL_0a18: ldloc.s V_7
+IL_0a1a: ldc.r4 0
+IL_0a1f: ble.un.s IL_0a66
+IL_0a21: ldarg.0
+IL_0a22: ldfld System.Single RoR2.HealthComponent::barrier
+IL_0a27: ldc.r4 0
+IL_0a2c: ble.un.s IL_0a66
+IL_0a2e: ldloc.s V_7
+IL_0a30: ldarg.0
+IL_0a31: ldfld System.Single RoR2.HealthComponent::barrier
+IL_0a36: bgt.un.s IL_0a50
+IL_0a38: ldarg.0
+IL_0a39: ldarg.0
+IL_0a3a: ldfld System.Single RoR2.HealthComponent::barrier
+IL_0a3f: ldloc.s V_7
+IL_0a41: sub
+IL_0a42: call System.Void RoR2.HealthComponent::set_Networkbarrier(System.Single)
+IL_0a47: ldc.r4 0
+IL_0a4c: stloc.s V_7
+IL_0a4e: br.s IL_0a66
+IL_0a50: ldloc.s V_7
+IL_0a52: ldarg.0
+IL_0a53: ldfld System.Single RoR2.HealthComponent::barrier
+IL_0a58: sub
+IL_0a59: stloc.s V_7
+IL_0a5b: ldarg.0
+IL_0a5c: ldc.r4 0
+IL_0a61: call System.Void RoR2.HealthComponent::set_Networkbarrier(System.Single)
+IL_0a66: ldloc.s V_7
+IL_0a68: ldc.r4 0
+IL_0a6d: ble.un IL_0b04
+IL_0a72: ldarg.0
+IL_0a73: ldfld System.Single RoR2.HealthComponent::shield
+IL_0a78: ldc.r4 0
+IL_0a7d: ble.un IL_0b04
+IL_0a82: ldloc.s V_7
+IL_0a84: ldarg.0
+IL_0a85: ldfld System.Single RoR2.HealthComponent::shield
+IL_0a8a: bgt.un.s IL_0aa4
+IL_0a8c: ldarg.0
+IL_0a8d: ldarg.0
+IL_0a8e: ldfld System.Single RoR2.HealthComponent::shield
+IL_0a93: ldloc.s V_7
+IL_0a95: sub
+IL_0a96: call System.Void RoR2.HealthComponent::set_Networkshield(System.Single)
+IL_0a9b: ldc.r4 0
+IL_0aa0: stloc.s V_7
+IL_0aa2: br.s IL_0b04
+IL_0aa4: ldloc.s V_7
+IL_0aa6: ldarg.0
+IL_0aa7: ldfld System.Single RoR2.HealthComponent::shield
+IL_0aac: sub
+IL_0aad: stloc.s V_7
+IL_0aaf: ldarg.0
+IL_0ab0: ldc.r4 0
+IL_0ab5: call System.Void RoR2.HealthComponent::set_Networkshield(System.Single)
+IL_0aba: ldc.r4 1
+IL_0abf: stloc.s V_38
+IL_0ac1: ldarg.0
+IL_0ac2: ldfld RoR2.CharacterBody RoR2.HealthComponent::body
+IL_0ac7: call System.Boolean UnityEngine.Object::op_Implicit(UnityEngine.Object)
+IL_0acc: brfalse.s IL_0adb
+IL_0ace: ldarg.0
+IL_0acf: ldfld RoR2.CharacterBody RoR2.HealthComponent::body
+IL_0ad4: callvirt System.Single RoR2.CharacterBody::get_radius()
+IL_0ad9: stloc.s V_38
+IL_0adb: ldsfld UnityEngine.GameObject RoR2.HealthComponent/AssetReferences::shieldBreakEffectPrefab
+IL_0ae0: newobj System.Void RoR2.EffectData::.ctor()
+IL_0ae5: dup
+IL_0ae6: ldarg.0
+IL_0ae7: call UnityEngine.Transform UnityEngine.Component::get_transform()
+IL_0aec: callvirt UnityEngine.Vector3 UnityEngine.Transform::get_position()
+IL_0af1: callvirt System.Void RoR2.EffectData::set_origin(UnityEngine.Vector3)
+IL_0af6: dup
+IL_0af7: ldloc.s V_38
+IL_0af9: stfld System.Single RoR2.EffectData::scale
+IL_0afe: ldc.i4.1
+IL_0aff: call System.Void RoR2.EffectManager::SpawnEffect(UnityEngine.GameObject,RoR2.EffectData,System.Boolean)
+IL_0b04: ldc.i4.0
+IL_0b05: stloc.s V_8
+IL_0b07: ldc.r4 0
+IL_0b0c: stloc.s V_9
+IL_0b0e: ldnull
+IL_0b0f: stloc.s V_10
+IL_0b11: ldloc.s V_7
+IL_0b13: ldc.r4 0
+IL_0b18: ble.un.s IL_0b54
+IL_0b1a: ldarg.0
+IL_0b1b: ldfld System.Single RoR2.HealthComponent::health
+IL_0b20: ldloc.s V_7
+IL_0b22: sub
+IL_0b23: stloc.s V_39
+IL_0b25: ldloc.s V_39
+IL_0b27: ldc.r4 1
+IL_0b2c: bge.un.s IL_0b4c
+IL_0b2e: ldarg.1
+IL_0b2f: ldfld RoR2.DamageType RoR2.DamageInfo::damageType
+IL_0b34: ldc.i4.1
+IL_0b35: and
+IL_0b36: brfalse.s IL_0b4c
+IL_0b38: ldarg.0
+IL_0b39: ldfld System.Single RoR2.HealthComponent::health
+IL_0b3e: ldc.r4 1
+IL_0b43: blt.un.s IL_0b4c
+IL_0b45: ldc.r4 1
+IL_0b4a: stloc.s V_39
+IL_0b4c: ldarg.0
+IL_0b4d: ldloc.s V_39
+IL_0b4f: call System.Void RoR2.HealthComponent::set_Networkhealth(System.Single)
+IL_0b54: ldc.r4 -Infini
+IL_0b59: stloc.s V_40
+IL_0b5b: ldarg.0
+IL_0b5c: ldfld RoR2.CharacterBody RoR2.HealthComponent::body
+IL_0b61: ldfld RoR2.CharacterBody/BodyFlags RoR2.CharacterBody::bodyFlags
+IL_0b66: ldc.i4.s 16
+IL_0b68: and
+IL_0b69: ldc.i4.0
+IL_0b6a: cgt.un
+IL_0b6c: brtrue.s IL_0bbb
+IL_0b6e: ldarg.0
+IL_0b6f: call System.Boolean RoR2.HealthComponent::get_isInFrozenState()
+IL_0b74: brfalse.s IL_0b8d
+IL_0b76: ldloc.s V_40
+IL_0b78: ldc.r4 0,3
+IL_0b7d: bge.un.s IL_0b8d
+IL_0b7f: ldc.r4 0,3
+IL_0b84: stloc.s V_40
+IL_0b86: ldsfld UnityEngine.GameObject EntityStates.FrozenState::executeEffectPrefab
+IL_0b8b: stloc.s V_10
+IL_0b8d: ldarg.0
+IL_0b8e: ldfld RoR2.CharacterBody RoR2.HealthComponent::body
+IL_0b93: callvirt System.Boolean RoR2.CharacterBody::get_isElite()
+IL_0b98: brfalse.s IL_0bbb
+IL_0b9a: ldloc.1
+IL_0b9b: call System.Boolean UnityEngine.Object::op_Implicit(UnityEngine.Object)
+IL_0ba0: brfalse.s IL_0bbb
+IL_0ba2: ldloc.1
+IL_0ba3: callvirt System.Single RoR2.CharacterBody::get_executeEliteHealthFraction()
+IL_0ba8: stloc.s V_41
+IL_0baa: ldloc.s V_40
+IL_0bac: ldloc.s V_41
+IL_0bae: bge.un.s IL_0bbb
+IL_0bb0: ldloc.s V_41
+IL_0bb2: stloc.s V_40
+IL_0bb4: ldsfld UnityEngine.GameObject RoR2.HealthComponent/AssetReferences::executeEffectPrefab
+IL_0bb9: stloc.s V_10
+IL_0bbb: ldloc.s V_40
+IL_0bbd: ldc.r4 0
+IL_0bc2: ble.un.s IL_0c2b
+IL_0bc4: ldarg.0
+IL_0bc5: call System.Single RoR2.HealthComponent::get_combinedHealthFraction()
+IL_0bca: ldloc.s V_40
+IL_0bcc: bgt.un.s IL_0c2b
+IL_0bce: ldc.i4.1
+IL_0bcf: stloc.s V_8
+IL_0bd1: ldarg.0
+IL_0bd2: call System.Single RoR2.HealthComponent::get_combinedHealth()
+IL_0bd7: ldc.r4 0
+IL_0bdc: call System.Single UnityEngine.Mathf::Max(System.Single,System.Single)
+IL_0be1: stloc.s V_9
+IL_0be3: ldarg.0
+IL_0be4: ldfld System.Single RoR2.HealthComponent::health
+IL_0be9: ldc.r4 0
+IL_0bee: ble.un.s IL_0bfb
+IL_0bf0: ldarg.0
+IL_0bf1: ldc.r4 0
+IL_0bf6: call System.Void RoR2.HealthComponent::set_Networkhealth(System.Single)
+IL_0bfb: ldarg.0
+IL_0bfc: ldfld System.Single RoR2.HealthComponent::shield
+IL_0c01: ldc.r4 0
+IL_0c06: ble.un.s IL_0c13
+IL_0c08: ldarg.0
+IL_0c09: ldc.r4 0
+IL_0c0e: call System.Void RoR2.HealthComponent::set_Networkshield(System.Single)
+IL_0c13: ldarg.0
+IL_0c14: ldfld System.Single RoR2.HealthComponent::barrier
+IL_0c19: ldc.r4 0
+IL_0c1e: ble.un.s IL_0c2b
+IL_0c20: ldarg.0
+IL_0c21: ldc.r4 0
+IL_0c26: call System.Void RoR2.HealthComponent::set_Networkbarrier(System.Single)
+IL_0c2b: ldarg.0
+IL_0c2c: ldarg.1
+IL_0c2d: ldc.i4.0
+IL_0c2e: ldc.i4.0
+IL_0c2f: call System.Void RoR2.HealthComponent::TakeDamageForce(RoR2.DamageInfo,System.Boolean,System.Boolean)
+IL_0c34: ldarg.0
+IL_0c35: stloc.s V_42
+IL_0c37: ldarg.1
+IL_0c38: ldloc.s V_42
+IL_0c3a: ldloc.s V_6
+IL_0c3c: ldloc.s V_4
+IL_0c3e: newobj System.Void RoR2.DamageReport::.ctor(RoR2.DamageInfo,RoR2.HealthComponent,System.Single,System.Single)
+IL_0c43: stloc.s V_11
+IL_0c45: ldarg.0
+IL_0c46: ldfld RoR2.IOnTakeDamageServerReceiver[] RoR2.HealthComponent::onTakeDamageReceivers
+IL_0c4b: stloc.s V_43
+IL_0c4d: ldc.i4.0
+IL_0c4e: stloc.s V_15
+IL_0c50: br.s IL_0c64
+IL_0c52: ldloc.s V_43
+IL_0c54: ldloc.s V_15
+IL_0c56: ldelem.ref
+IL_0c57: ldloc.s V_11
+IL_0c59: callvirt System.Void RoR2.IOnTakeDamageServerReceiver::OnTakeDamageServer(RoR2.DamageReport)
+IL_0c5e: ldloc.s V_15
+IL_0c60: ldc.i4.1
+IL_0c61: add
+IL_0c62: stloc.s V_15
+IL_0c64: ldloc.s V_15
+IL_0c66: ldloc.s V_43
+IL_0c68: ldlen
+IL_0c69: conv.i4
+IL_0c6a: blt.s IL_0c52
+IL_0c6c: ldloc.s V_6
+IL_0c6e: ldc.r4 0
+IL_0c73: ble.un.s IL_0c7c
+IL_0c75: ldloc.s V_11
+IL_0c77: call System.Void RoR2.HealthComponent::SendDamageDealt(RoR2.DamageReport)
+IL_0c7c: ldarg.0
+IL_0c7d: ldloc.s V_11
+IL_0c7f: ldfld System.Single RoR2.DamageReport::damageDealt
+IL_0c84: ldarg.1
+IL_0c85: ldfld UnityEngine.Vector3 RoR2.DamageInfo::position
+IL_0c8a: ldarg.1
+IL_0c8b: ldfld RoR2.DamageType RoR2.DamageInfo::damageType
+IL_0c90: ldc.i4 2048
+IL_0c95: and
+IL_0c96: ldc.i4.0
+IL_0c97: cgt.un
+IL_0c99: ldarg.1
+IL_0c9a: ldfld UnityEngine.GameObject RoR2.DamageInfo::attacker
+IL_0c9f: call System.Void RoR2.HealthComponent::UpdateLastHitTime(System.Single,UnityEngine.Vector3,System.Boolean,UnityEngine.GameObject)
+IL_0ca4: ldarg.1
+IL_0ca5: ldfld UnityEngine.GameObject RoR2.DamageInfo::attacker
+IL_0caa: call System.Boolean UnityEngine.Object::op_Implicit(UnityEngine.Object)
+IL_0caf: brfalse.s IL_0cf7
+IL_0cb1: ldarg.1
+IL_0cb2: ldfld UnityEngine.GameObject RoR2.DamageInfo::attacker
+IL_0cb7: call System.Collections.Generic.List`1<T> RoR2.GetComponentsCache`1<RoR2.IOnDamageDealtServerReceiver>::GetGameObjectComponents(UnityEngine.GameObject)
+IL_0cbc: stloc.s V_44
+IL_0cbe: ldloc.s V_44
+IL_0cc0: callvirt System.Collections.Generic.List`1/Enumerator<T> System.Collections.Generic.List`1<RoR2.IOnDamageDealtServerReceiver>::GetEnumerator()
+IL_0cc5: stloc.s V_45
+IL_0cc7: br.s IL_0cd7
+IL_0cc9: ldloca.s V_45
+IL_0ccb: call T System.Collections.Generic.List`1/Enumerator<RoR2.IOnDamageDealtServerReceiver>::get_Current()
+IL_0cd0: ldloc.s V_11
+IL_0cd2: callvirt System.Void RoR2.IOnDamageDealtServerReceiver::OnDamageDealtServer(RoR2.DamageReport)
+IL_0cd7: ldloca.s V_45
+IL_0cd9: call System.Boolean System.Collections.Generic.List`1/Enumerator<RoR2.IOnDamageDealtServerReceiver>::MoveNext()
+IL_0cde: brtrue.s IL_0cc9
+IL_0ce0: leave.s IL_0cf0
+IL_0ce2: ldloca.s V_45
+IL_0ce4: constrained. System.Collections.Generic.List`1/Enumerator<RoR2.IOnDamageDealtServerReceiver>
+IL_0cea: callvirt System.Void System.IDisposable::Dispose()
+IL_0cef: endfinally
+IL_0cf0: ldloc.s V_44
+IL_0cf2: call System.Void RoR2.GetComponentsCache`1<RoR2.IOnDamageDealtServerReceiver>::ReturnBuffer(System.Collections.Generic.List`1<T>)
+IL_0cf7: ldarg.1
+IL_0cf8: ldfld UnityEngine.GameObject RoR2.DamageInfo::inflictor
+IL_0cfd: call System.Boolean UnityEngine.Object::op_Implicit(UnityEngine.Object)
+IL_0d02: brfalse.s IL_0d4a
+IL_0d04: ldarg.1
+IL_0d05: ldfld UnityEngine.GameObject RoR2.DamageInfo::inflictor
+IL_0d0a: call System.Collections.Generic.List`1<T> RoR2.GetComponentsCache`1<RoR2.IOnDamageInflictedServerReceiver>::GetGameObjectComponents(UnityEngine.GameObject)
+IL_0d0f: stloc.s V_46
+IL_0d11: ldloc.s V_46
+IL_0d13: callvirt System.Collections.Generic.List`1/Enumerator<T> System.Collections.Generic.List`1<RoR2.IOnDamageInflictedServerReceiver>::GetEnumerator()
+IL_0d18: stloc.s V_47
+IL_0d1a: br.s IL_0d2a
+IL_0d1c: ldloca.s V_47
+IL_0d1e: call T System.Collections.Generic.List`1/Enumerator<RoR2.IOnDamageInflictedServerReceiver>::get_Current()
+IL_0d23: ldloc.s V_11
+IL_0d25: callvirt System.Void RoR2.IOnDamageInflictedServerReceiver::OnDamageInflictedServer(RoR2.DamageReport)
+IL_0d2a: ldloca.s V_47
+IL_0d2c: call System.Boolean System.Collections.Generic.List`1/Enumerator<RoR2.IOnDamageInflictedServerReceiver>::MoveNext()
+IL_0d31: brtrue.s IL_0d1c
+IL_0d33: leave.s IL_0d43
+IL_0d35: ldloca.s V_47
+IL_0d37: constrained. System.Collections.Generic.List`1/Enumerator<RoR2.IOnDamageInflictedServerReceiver>
+IL_0d3d: callvirt System.Void System.IDisposable::Dispose()
+IL_0d42: endfinally
+IL_0d43: ldloc.s V_46
+IL_0d45: call System.Void RoR2.GetComponentsCache`1<RoR2.IOnDamageInflictedServerReceiver>::ReturnBuffer(System.Collections.Generic.List`1<T>)
+IL_0d4a: ldloc.s V_11
+IL_0d4c: call System.Void RoR2.GlobalEventManager::ServerDamageDealt(RoR2.DamageReport)
+IL_0d51: ldarg.0
+IL_0d52: call System.Boolean RoR2.HealthComponent::get_alive()
+IL_0d57: brtrue IL_0e45
+IL_0d5c: ldarg.0
+IL_0d5d: ldarg.1
+IL_0d5e: ldfld RoR2.DamageType RoR2.DamageInfo::damageType
+IL_0d63: call System.Void RoR2.HealthComponent::set_killingDamageType(RoR2.DamageType)
+IL_0d68: ldloc.s V_8
+IL_0d6a: brfalse.s IL_0dbc
+IL_0d6c: ldloc.s V_11
+IL_0d6e: ldloc.s V_9
+IL_0d70: call System.Void RoR2.GlobalEventManager::ServerCharacterExecuted(RoR2.DamageReport,System.Single)
+IL_0d75: ldloc.s V_10
+IL_0d77: brfalse.s IL_0dbc
+IL_0d79: ldloc.s V_10
+IL_0d7b: newobj System.Void RoR2.EffectData::.ctor()
+IL_0d80: dup
+IL_0d81: ldarg.0
+IL_0d82: ldfld RoR2.CharacterBody RoR2.HealthComponent::body
+IL_0d87: callvirt UnityEngine.Vector3 RoR2.CharacterBody::get_corePosition()
+IL_0d8c: callvirt System.Void RoR2.EffectData::set_origin(UnityEngine.Vector3)
+IL_0d91: dup
+IL_0d92: ldarg.0
+IL_0d93: ldfld RoR2.CharacterBody RoR2.HealthComponent::body
+IL_0d98: call System.Boolean UnityEngine.Object::op_Implicit(UnityEngine.Object)
+IL_0d9d: brtrue.s IL_0da6
+IL_0d9f: ldc.r4 1
+IL_0da4: br.s IL_0db1
+IL_0da6: ldarg.0
+IL_0da7: ldfld RoR2.CharacterBody RoR2.HealthComponent::body
+IL_0dac: callvirt System.Single RoR2.CharacterBody::get_radius()
+IL_0db1: stfld System.Single RoR2.EffectData::scale
+IL_0db6: ldc.i4.1
+IL_0db7: call System.Void RoR2.EffectManager::SpawnEffect(UnityEngine.GameObject,RoR2.EffectData,System.Boolean)
+IL_0dbc: ldarg.0
+IL_0dbd: call T[] UnityEngine.Component::GetComponents<RoR2.IOnKilledServerReceiver>()
+IL_0dc2: stloc.s V_48
+IL_0dc4: ldc.i4.0
+IL_0dc5: stloc.s V_15
+IL_0dc7: br.s IL_0ddb
+IL_0dc9: ldloc.s V_48
+IL_0dcb: ldloc.s V_15
+IL_0dcd: ldelem.ref
+IL_0dce: ldloc.s V_11
+IL_0dd0: callvirt System.Void RoR2.IOnKilledServerReceiver::OnKilledServer(RoR2.DamageReport)
+IL_0dd5: ldloc.s V_15
+IL_0dd7: ldc.i4.1
+IL_0dd8: add
+IL_0dd9: stloc.s V_15
+IL_0ddb: ldloc.s V_15
+IL_0ddd: ldloc.s V_48
+IL_0ddf: ldlen
+IL_0de0: conv.i4
+IL_0de1: blt.s IL_0dc9
+IL_0de3: ldarg.1
+IL_0de4: ldfld UnityEngine.GameObject RoR2.DamageInfo::attacker
+IL_0de9: call System.Boolean UnityEngine.Object::op_Implicit(UnityEngine.Object)
+IL_0dee: brfalse.s IL_0e1c
+IL_0df0: ldarg.1
+IL_0df1: ldfld UnityEngine.GameObject RoR2.DamageInfo::attacker
+IL_0df6: callvirt T[] UnityEngine.GameObject::GetComponents<RoR2.IOnKilledOtherServerReceiver>()
+IL_0dfb: stloc.s V_49
+IL_0dfd: ldc.i4.0
+IL_0dfe: stloc.s V_15
+IL_0e00: br.s IL_0e14
+IL_0e02: ldloc.s V_49
+IL_0e04: ldloc.s V_15
+IL_0e06: ldelem.ref
+IL_0e07: ldloc.s V_11
+IL_0e09: callvirt System.Void RoR2.IOnKilledOtherServerReceiver::OnKilledOtherServer(RoR2.DamageReport)
+IL_0e0e: ldloc.s V_15
+IL_0e10: ldc.i4.1
+IL_0e11: add
+IL_0e12: stloc.s V_15
+IL_0e14: ldloc.s V_15
+IL_0e16: ldloc.s V_49
+IL_0e18: ldlen
+IL_0e19: conv.i4
+IL_0e1a: blt.s IL_0e02
+IL_0e1c: ldarg.0
+IL_0e1d: ldfld System.Single RoR2.HealthComponent::globalDeathEventChanceCoefficient
+IL_0e22: ldc.r4 100
+IL_0e27: mul
+IL_0e28: ldc.r4 0
+IL_0e2d: ldnull
+IL_0e2e: call System.Boolean RoR2.Util::CheckRoll(System.Single,System.Single,RoR2.CharacterMaster)
+IL_0e33: brfalse IL_101f
+IL_0e38: ldsfld RoR2.GlobalEventManager RoR2.GlobalEventManager::instance
+IL_0e3d: ldloc.s V_11
+IL_0e3f: callvirt System.Void RoR2.GlobalEventManager::OnCharacterDeath(RoR2.DamageReport)
+IL_0e44: ret
+IL_0e45: ldc.i4.5
+IL_0e46: ldc.i4.2
+IL_0e47: ldarg.0
+IL_0e48: ldflda RoR2.HealthComponent/ItemCounts RoR2.HealthComponent::itemCounts
+IL_0e4d: ldfld System.Int32 RoR2.HealthComponent/ItemCounts::thorns
+IL_0e52: ldc.i4.1
+IL_0e53: sub
+IL_0e54: mul
+IL_0e55: add
+IL_0e56: stloc.s V_50
+IL_0e58: ldarg.0
+IL_0e59: ldflda RoR2.HealthComponent/ItemCounts RoR2.HealthComponent::itemCounts
+IL_0e5e: ldfld System.Int32 RoR2.HealthComponent/ItemCounts::thorns
+IL_0e63: ldc.i4.0
+IL_0e64: ble IL_101f
+IL_0e69: ldloc.s V_11
+IL_0e6b: ldfld RoR2.DamageInfo RoR2.DamageReport::damageInfo
+IL_0e70: ldflda RoR2.ProcChainMask RoR2.DamageInfo::procChainMask
+IL_0e75: ldc.i4.s 15
+IL_0e77: call System.Boolean RoR2.ProcChainMask::HasProc(RoR2.ProcType)
+IL_0e7c: brtrue IL_101f
+IL_0e81: ldarg.0
+IL_0e82: ldflda RoR2.HealthComponent/ItemCounts RoR2.HealthComponent::itemCounts
+IL_0e87: ldfld System.Int32 RoR2.HealthComponent/ItemCounts::invadingDoppelganger
+IL_0e8c: ldc.i4.0
+IL_0e8d: cgt
+IL_0e8f: stloc.s V_51
+IL_0e91: ldc.r4 25
+IL_0e96: ldc.r4 10
+IL_0e9b: ldarg.0
+IL_0e9c: ldflda RoR2.HealthComponent/ItemCounts RoR2.HealthComponent::itemCounts
+IL_0ea1: ldfld System.Int32 RoR2.HealthComponent/ItemCounts::thorns
+IL_0ea6: ldc.i4.1
+IL_0ea7: sub
+IL_0ea8: conv.r4
+IL_0ea9: mul
+IL_0eaa: add
+IL_0eab: stloc.s V_52
+IL_0ead: ldarg.0
+IL_0eae: ldfld RoR2.CharacterBody RoR2.HealthComponent::body
+IL_0eb3: callvirt System.Boolean RoR2.CharacterBody::RollCrit()
+IL_0eb8: stloc.s V_53
+IL_0eba: ldc.r4 1,6
+IL_0ebf: ldarg.0
+IL_0ec0: ldfld RoR2.CharacterBody RoR2.HealthComponent::body
+IL_0ec5: callvirt System.Single RoR2.CharacterBody::get_damage()
+IL_0eca: mul
+IL_0ecb: stloc.s V_54
+IL_0ecd: ldarg.0
+IL_0ece: ldfld RoR2.CharacterBody RoR2.HealthComponent::body
+IL_0ed3: callvirt RoR2.TeamComponent RoR2.CharacterBody::get_teamComponent()
+IL_0ed8: callvirt RoR2.TeamIndex RoR2.TeamComponent::get_teamIndex()
+IL_0edd: stloc.s V_55
+IL_0edf: newobj System.Void RoR2.SphereSearch::.ctor()
+IL_0ee4: dup
+IL_0ee5: ldloc.s V_11
+IL_0ee7: ldfld RoR2.DamageInfo RoR2.DamageReport::damageInfo
+IL_0eec: ldfld UnityEngine.Vector3 RoR2.DamageInfo::position
+IL_0ef1: stfld UnityEngine.Vector3 RoR2.SphereSearch::origin
+IL_0ef6: dup
+IL_0ef7: ldloc.s V_52
+IL_0ef9: stfld System.Single RoR2.SphereSearch::radius
+IL_0efe: dup
+IL_0eff: ldsfld RoR2.LayerIndex RoR2.LayerIndex::entityPrecise
+IL_0f04: stloc.s V_57
+IL_0f06: ldloca.s V_57
+IL_0f08: call UnityEngine.LayerMask RoR2.LayerIndex::get_mask()
+IL_0f0d: stfld UnityEngine.LayerMask RoR2.SphereSearch::mask
+IL_0f12: dup
+IL_0f13: ldc.i4.0
+IL_0f14: stfld UnityEngine.QueryTriggerInteraction RoR2.SphereSearch::queryTriggerInteraction
+IL_0f19: callvirt RoR2.SphereSearch RoR2.SphereSearch::RefreshCandidates()
+IL_0f1e: ldloc.s V_55
+IL_0f20: call RoR2.TeamMask RoR2.TeamMask::GetEnemyTeams(RoR2.TeamIndex)
+IL_0f25: callvirt RoR2.SphereSearch RoR2.SphereSearch::FilterCandidatesByHurtBoxTeam(RoR2.TeamMask)
+IL_0f2a: callvirt RoR2.SphereSearch RoR2.SphereSearch::OrderCandidatesByDistance()
+IL_0f2f: callvirt RoR2.SphereSearch RoR2.SphereSearch::FilterCandidatesByDistinctHurtBoxEntities()
+IL_0f34: callvirt RoR2.HurtBox[] RoR2.SphereSearch::GetHurtBoxes()
+IL_0f39: stloc.s V_56
+IL_0f3b: ldc.i4.0
+IL_0f3c: stloc.s V_58
+IL_0f3e: br IL_100d
+IL_0f43: newobj System.Void RoR2.Orbs.LightningOrb::.ctor()
+IL_0f48: stloc.s V_59
+IL_0f4a: ldloc.s V_59
+IL_0f4c: ldarg.0
+IL_0f4d: call UnityEngine.GameObject UnityEngine.Component::get_gameObject()
+IL_0f52: stfld UnityEngine.GameObject RoR2.Orbs.LightningOrb::attacker
+IL_0f57: ldloc.s V_59
+IL_0f59: ldnull
+IL_0f5a: stfld System.Collections.Generic.List`1<RoR2.HealthComponent> RoR2.Orbs.LightningOrb::bouncedObjects
+IL_0f5f: ldloc.s V_59
+IL_0f61: ldc.i4.0
+IL_0f62: stfld System.Int32 RoR2.Orbs.LightningOrb::bouncesRemaining
+IL_0f67: ldloc.s V_59
+IL_0f69: ldc.r4 1
+IL_0f6e: stfld System.Single RoR2.Orbs.LightningOrb::damageCoefficientPerBounce
+IL_0f73: ldloc.s V_59
+IL_0f75: ldc.i4.3
+IL_0f76: stfld RoR2.DamageColorIndex RoR2.Orbs.LightningOrb::damageColorIndex
+IL_0f7b: ldloc.s V_59
+IL_0f7d: ldloc.s V_54
+IL_0f7f: stfld System.Single RoR2.Orbs.LightningOrb::damageValue
+IL_0f84: ldloc.s V_59
+IL_0f86: ldloc.s V_53
+IL_0f88: stfld System.Boolean RoR2.Orbs.LightningOrb::isCrit
+IL_0f8d: ldloc.s V_59
+IL_0f8f: ldc.i4.6
+IL_0f90: stfld RoR2.Orbs.LightningOrb/LightningType RoR2.Orbs.LightningOrb::lightningType
+IL_0f95: ldloc.s V_59
+IL_0f97: ldloc.s V_11
+IL_0f99: ldfld RoR2.DamageInfo RoR2.DamageReport::damageInfo
+IL_0f9e: ldfld UnityEngine.Vector3 RoR2.DamageInfo::position
+IL_0fa3: stfld UnityEngine.Vector3 RoR2.Orbs.Orb::origin
+IL_0fa8: ldloc.s V_59
+IL_0faa: ldflda RoR2.ProcChainMask RoR2.Orbs.LightningOrb::procChainMask
+IL_0faf: initobj RoR2.ProcChainMask
+IL_0fb5: ldloc.s V_59
+IL_0fb7: ldflda RoR2.ProcChainMask RoR2.Orbs.LightningOrb::procChainMask
+IL_0fbc: ldc.i4.s 15
+IL_0fbe: call System.Void RoR2.ProcChainMask::AddProc(RoR2.ProcType)
+IL_0fc3: ldloc.s V_59
+IL_0fc5: ldloc.s V_51
+IL_0fc7: brtrue.s IL_0fd0
+IL_0fc9: ldc.r4 0,5
+IL_0fce: br.s IL_0fd5
+IL_0fd0: ldc.r4 0
+IL_0fd5: stfld System.Single RoR2.Orbs.LightningOrb::procCoefficient
+IL_0fda: ldloc.s V_59
+IL_0fdc: ldc.r4 0
+IL_0fe1: stfld System.Single RoR2.Orbs.LightningOrb::range
+IL_0fe6: ldloc.s V_59
+IL_0fe8: ldloc.s V_55
+IL_0fea: stfld RoR2.TeamIndex RoR2.Orbs.LightningOrb::teamIndex
+IL_0fef: ldloc.s V_59
+IL_0ff1: ldloc.s V_56
+IL_0ff3: ldloc.s V_58
+IL_0ff5: ldelem.ref
+IL_0ff6: stfld RoR2.HurtBox RoR2.Orbs.Orb::target
+IL_0ffb: call RoR2.Orbs.OrbManager RoR2.Orbs.OrbManager::get_instance()
+IL_1000: ldloc.s V_59
+IL_1002: callvirt System.Void RoR2.Orbs.OrbManager::AddOrb(RoR2.Orbs.Orb)
+IL_1007: ldloc.s V_58
+IL_1009: ldc.i4.1
+IL_100a: add
+IL_100b: stloc.s V_58
+IL_100d: ldloc.s V_58
+IL_100f: ldloc.s V_50
+IL_1011: ldloc.s V_56
+IL_1013: ldlen
+IL_1014: conv.i4
+IL_1015: call System.Int32 UnityEngine.Mathf::Min(System.Int32,System.Int32)
+IL_101a: blt IL_0f43
+IL_101f: ret
+
+
+[Error  : Unity Log] InvalidProgramException: Invalid IL code in DMD<TakeDamage>?-1441972736:_RoR2_HealthComponent::TakeDamage (RoR2.HealthComponent,RoR2.DamageInfo): IL_0578: ldfld     0x0a00001f
+
+
+Stack trace:
+System.RuntimeMethodHandle.GetFunctionPointer () (at <2fa7a6a452ca43df998f07fd1486c0df>:IL_0000)
+MonoMod.RuntimeDetour.Platforms.DetourRuntimeILPlatform.GetFunctionPointer (System.Reflection.MethodBase method, System.RuntimeMethodHandle handle) (at <d9e9f28db1e84055befcfc31c0c2d253>:IL_0000)
+MonoMod.RuntimeDetour.Platforms.DetourRuntimeILPlatform.GetNativeStart (System.Reflection.MethodBase method) (at <d9e9f28db1e84055befcfc31c0c2d253>:IL_0044)
+MonoMod.RuntimeDetour.DetourHelper.GetNativeStart (System.Reflection.MethodBase method) (at <d9e9f28db1e84055befcfc31c0c2d253>:IL_0005)
+MonoMod.RuntimeDetour.Detour._TopApply () (at <d9e9f28db1e84055befcfc31c0c2d253>:IL_0025)
+MonoMod.RuntimeDetour.Detour._RefreshChain (System.Reflection.MethodBase method) (at <d9e9f28db1e84055befcfc31c0c2d253>:IL_0149)
+MonoMod.RuntimeDetour.Detour.Apply () (at <d9e9f28db1e84055befcfc31c0c2d253>:IL_0053)
+MonoMod.RuntimeDetour.Detour..ctor (System.Reflection.MethodBase from, System.Reflection.MethodBase to, MonoMod.RuntimeDetour.DetourConfig& config) (at <d9e9f28db1e84055befcfc31c0c2d253>:IL_02D9)
+DMD<Refresh>?-1441972736._MonoMod_RuntimeDetour_ILHook+Context::Refresh (MonoMod.RuntimeDetour.ILHook+Context this) (at <cb84e8ba5b214569ab5099fdb6f9de7f>:IL_0128)
+DMD<>?-1441972736.Trampoline<MonoMod.RuntimeDetour.ILHook+Context::Refresh>?834636800 (System.Object ) (at <a14adf8fecbf4e288b41836eb2cf0f5e>:IL_0020)
+HarmonyLib.Internal.RuntimeFixes.StackTraceFixes.OnILChainRefresh (System.Object self) (at <c24093a882714adc80ea816abe5f1891>:IL_0000)
+MonoMod.RuntimeDetour.ILHook.Apply () (at <d9e9f28db1e84055befcfc31c0c2d253>:IL_0059)
+MonoMod.RuntimeDetour.ILHook..ctor (System.Reflection.MethodBase from, MonoMod.Cil.ILContext+Manipulator manipulator, MonoMod.RuntimeDetour.ILHookConfig& config) (at <d9e9f28db1e84055befcfc31c0c2d253>:IL_0140)
+MonoMod.RuntimeDetour.ILHook..ctor (System.Reflection.MethodBase from, MonoMod.Cil.ILContext+Manipulator manipulator, MonoMod.RuntimeDetour.ILHookConfig config) (at <d9e9f28db1e84055befcfc31c0c2d253>:IL_0000)
+MonoMod.RuntimeDetour.ILHook..ctor (System.Reflection.MethodBase from, MonoMod.Cil.ILContext+Manipulator manipulator) (at <d9e9f28db1e84055befcfc31c0c2d253>:IL_001C)
+MonoMod.RuntimeDetour.HookGen.HookEndpoint._NewILHook (System.Reflection.MethodBase from, MonoMod.Cil.ILContext+Manipulator to) (at <d9e9f28db1e84055befcfc31c0c2d253>:IL_0000)
+MonoMod.RuntimeDetour.HookGen.HookEndpoint._Add[TDelegate] (System.Func`3[T1,T2,TResult] gen, TDelegate hookDelegate) (at <d9e9f28db1e84055befcfc31c0c2d253>:IL_003C)
+MonoMod.RuntimeDetour.HookGen.HookEndpoint.Modify (System.Delegate hookDelegate) (at <d9e9f28db1e84055befcfc31c0c2d253>:IL_0013)
+MonoMod.RuntimeDetour.HookGen.HookEndpointManager.Modify (System.Reflection.MethodBase method, System.Delegate callback) (at <d9e9f28db1e84055befcfc31c0c2d253>:IL_0028)
+MonoMod.RuntimeDetour.HookGen.HookEndpointManager.Modify[T] (System.Reflection.MethodBase method, System.Delegate callback) (at <d9e9f28db1e84055befcfc31c0c2d253>:IL_0000)
+IL.RoR2.HealthComponent.add_TakeDamage (MonoMod.Cil.ILContext+Manipulator ) (at <1b2221b36cab46bf88e58507a1d74cf9>:IL_000A)
+BetterArmory.Items.GoldenArrow.Hooks () (at <3c7f9a88b2e34b5da2c62b0632ad3478>:IL_0001)
+BetterArmory.Items.GoldenArrow.Init (BepInEx.Configuration.ConfigFile config) (at <3c7f9a88b2e34b5da2c62b0632ad3478>:IL_0017)
+BetterArmory.Main.Awake () (at <3c7f9a88b2e34b5da2c62b0632ad3478>:IL_0129)
+UnityEngine.GameObject:AddComponent(Type)
+BepInEx.Bootstrap.Chainloader:Start()
+UnityEngine.Application:.cctor()
+RoR2.Console:RegisterLogHandler()

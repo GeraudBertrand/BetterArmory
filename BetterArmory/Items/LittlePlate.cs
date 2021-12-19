@@ -13,7 +13,7 @@ namespace BetterArmory.Items
 
         public override string ItemName => "Little Plate";
         public override string ItemLangTokenName => "LITTLE_PLATE";
-        public override string ItemPickupDesc => "Give armor to proctect you";
+        public override string ItemPickupDesc => "Give armor to protect you";
         public override string ItemFullDescription => "Let armor be the thoughest thing in the world";
         public override string ItemLore => "";
 
@@ -35,8 +35,8 @@ namespace BetterArmory.Items
 
         public override void CreateConfig(ConfigFile config)
         {
-            ArmorBase = config.Bind<float>("Item: " + ItemName, "Base armor for Little Plate", 10.0f, "How much armor should the first gave you");
-            ArmorPerStack = config.Bind<float>("Item: " + ItemName, "Armor per Little Plate stack", 15.0f, "How much armor should each stack of LitllePlate give");
+            ArmorBase = config.Bind<float>("Item: " + ItemLangTokenName, "Base armor for Little Plate", 10.0f, "How much armor should the first gave you");
+            ArmorPerStack = config.Bind<float>("Item: " + ItemLangTokenName, "Armor per Little Plate stack", 15.0f, "How much armor should each stack of LitllePlate give");
 
         }
 
