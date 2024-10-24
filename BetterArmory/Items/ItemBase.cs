@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace BetterArmory.Items
 {
+    /// <summary>
+    /// #TODO Stats Affichage
+    /// </summary>
     public abstract class ItemBase
     {
         public abstract string ItemName { get; }

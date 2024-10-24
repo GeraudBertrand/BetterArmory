@@ -4,6 +4,7 @@ using R2API.Utils;
 using RoR2;
 using UnityEngine;
 using static BetterArmory.Main;
+using BetterArmory.Buffs;
 
 namespace BetterArmory.Equipment
 {
@@ -15,7 +16,7 @@ namespace BetterArmory.Equipment
         public override string EquipmentFullDescription => "";
         public override string EquipmentLore => "";
 
-        public override GameObject EquipmentModel => MainAssets.LoadAsset<GameObject>("assets/models/prefabs/item/firstitem/littleplate.prefab");
+        public override GameObject EquipmentModel => MainAssets.LoadAsset<GameObject>("assets/models/prefabs/equipment/converteur/converteur.prefab");
         public override Sprite EquipmentIcon => MainAssets.LoadAsset<Sprite>("assets/textures/icons/item/littleplate_icon.png");
 
         public ConfigEntry<float> ConverterRate;
@@ -24,17 +25,34 @@ namespace BetterArmory.Equipment
 
         public float exchange { get; private set; }
 
+        public BuffDef ConvertBuff { get; private set; }
+
         public override void Init(ConfigFile config)
         {
+            SetupBuff();
             CreateConfig(config);
             CreateLang();
             CreateEquipment();
             Hooks();
         }
 
+        protected void SetupBuff()
+        {
+            ConvertBuff = ScriptableObject.CreateInstance<BuffDef>();
+            ConvertBuff.name = "BUFF_";
+            ConvertBuff.canStack = true;
+            ConvertBuff.isCooldown = false;
+            ConvertBuff.isDebuff = false;
+            ConvertBuff.isHidden = false;
+            ConvertBuff.buffColor = Color.white;
+            ConvertBuff.iconSprite = MainAssets.LoadAsset<Sprite>("MyOrb.png");
+
+            ContentAddition.AddBuffDef(ConvertBuff);
+        }
+
         protected override void CreateConfig(ConfigFile config)
         {
-            ConverterCooldown = config.Bind<float>("Equipment : Converter","cooldown",50f,"how much cooldown");
+            ConverterCooldown = config.Bind<float>("Equipment : Converter","cooldown",10f,"how much cooldown");
             ConverterRate = config.Bind<float>("Equipment : Converter","rate",.2f,"how much rate");
         }
 
@@ -43,33 +61,47 @@ namespace BetterArmory.Equipment
             return new ItemDisplayRuleDict();
         }
 
+
+        /// <summary>
+        /// Hook in the awake and use a buff to check for change
+        /// Maybe : slot.characterBody.isLocalPlayer
+        /// </summary>
+        /// <param name="slot"></param>
+        /// <returns></returns>
         protected override bool ActivateEquipment(EquipmentSlot slot)
         {
-            if (!slot.characterBody || !slot.characterBody.teamComponent) return false;
-            var health = slot.characterBody.healthComponent;
-            ChatMessage.Send("Converting...");
+            CharacterBody body = slot.characterBody;
+            if (!body || !body.teamComponent) return false;
+            ChatMessage.SendColored("Converting...", Color.green);
+
+            var health = body.healthComponent;
             if (health.fullHealth > 1f)
             {
-
-                exchange = health.fullHealth * ConverterRate.Value;
-                exchange = Mathf.Floor(exchange);
-
-                RecalculateStatsAPI.GetStatCoefficients += ModifyHealthAndShield;
+                body.AddBuff(ConvertBuff);
                 return true;
             }
-            else
-            {
-                ChatMessage.SendColored("Not enough health !",Color.red);
-            }
+            else ChatMessage.SendColored("Not enough health !", Color.red);
+           
 
             return false;
         }
 
         private void ModifyHealthAndShield(CharacterBody sender, RecalculateStatsAPI.StatHookEventArgs args)
         {
-            args.baseShieldAdd += exchange;
-            args.baseHealthAdd -= exchange;
-            ChatMessage.SendColored("It's done !!",Color.green);
+            if (sender.isPlayerControlled && sender.HasBuff(ConvertBuff))
+            {
+                exchange = sender.baseMaxHealth * ConverterRate.Value;
+                sender.baseMaxShield += exchange;
+                sender.baseMaxHealth -= exchange;
+
+                ChatMessage.SendColored("Conversion done !", Color.green);
+                sender.RemoveBuff(ConvertBuff);
+            }
+        }
+
+        public override void Hooks()
+        {
+            RecalculateStatsAPI.GetStatCoefficients += ModifyHealthAndShield;
         }
     }
 }
