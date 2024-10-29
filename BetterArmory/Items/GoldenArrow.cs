@@ -49,13 +49,10 @@ namespace BetterArmory.Items
 
         private void MultiCrit(CharacterBody sender, StatHookEventArgs args)
         {
-            if (sender)
+            if (sender && GetCount(sender) > 0)
             {
                 var count = GetCount(sender);
-                if(count > 0)
-                {
-                    args.critDamageMultAdd += CritCoeff.Value * (count - 1);
-                }
+                args.critDamageMultAdd += CritCoeff.Value * (count);
             }
             
             

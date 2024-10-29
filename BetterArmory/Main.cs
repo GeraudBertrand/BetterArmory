@@ -14,7 +14,7 @@ using UnityEngine;
 
 namespace BetterArmory
 {
-
+#pragma warning restore CS0618 // Type or member is obsolete
     [BepInPlugin(ModGuid, ModName, ModVer)]
     [BepInDependency(R2API.R2API.PluginGUID, R2API.R2API.PluginVersion)]
     [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.EveryoneNeedSameModVersion)]

@@ -72,8 +72,8 @@ namespace BetterArmory.Items
             ItemDef.tier = Tier;
 
             if (ItemTags.Length > 0) { ItemDef.tags = ItemTags; }
-
-            ItemAPI.Add(new CustomItem(ItemDef, CreateItemDisplayRules()));
+            var c = new CustomItem(ItemDef, CreateItemDisplayRules());
+            ItemAPI.Add(c);
         }
 
         public virtual void Hooks() { }

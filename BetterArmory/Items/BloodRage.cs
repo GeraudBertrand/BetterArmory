@@ -25,8 +25,8 @@ namespace BetterArmory.Items
 
         public BuffDef DamageBuff { get; private set; }
 
-        public override Sprite ItemIcon => MainAssets.LoadAsset<Sprite>("MyOrb.png");
-        public override GameObject ItemModel => MainAssets.LoadAsset<GameObject>("MyOrbDisplay.prefab");
+        public override Sprite ItemIcon => MainAssets.LoadAsset<Sprite>("BloodRage.png");
+        public override GameObject ItemModel => MainAssets.LoadAsset<GameObject>("Magatama.prefab");
 
         public override void Init(ConfigFile config)
         {

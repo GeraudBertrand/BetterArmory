@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2258569041
+CRC: 935542845
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 0459770d1ef1a1fcffef11945f3f8974
+    Hash: 635f3e17293b548d04deda23aca9e4c2
   TypeTreeHash:
     serializedVersion: 2
     Hash: a7a21288fe2bd6ae3724c7054e7a1302
@@ -31,5 +31,8 @@ SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Models/Prefabs/Item/MyOrb/MyOrbDisplay.prefab
 - Assets/Textures/Icons/Item/MyOrb/MyOrb.png
+- Assets/Models/Prefabs/Item/BloodRage/Magatama.prefab
+- Assets/Materials/Item/BloodRage/Blood.mat
 - Assets/Materials/Item/MyOrb/OrbMaterial.mat
+- Assets/Textures/Icons/Item/BloodRage/BloodRage.png
 Dependencies: []
