@@ -52,8 +52,8 @@ namespace BetterArmory.Equipment
 
         protected override void CreateConfig(ConfigFile config)
         {
-            ConverterCooldown = config.Bind<float>("Equipment : Converter","cooldown",10f,"how much cooldown");
-            ConverterRate = config.Bind<float>("Equipment : Converter","rate",.2f,"how much rate");
+            ConverterCooldown = config.Bind<float>("Equipment : "+ EquipmentLangTokenName, "cooldown",10f,"how much cooldown");
+            ConverterRate = config.Bind<float>("Equipment : "+ EquipmentLangTokenName, "rate",.2f,"how much rate");
         }
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()

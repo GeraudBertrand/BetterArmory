@@ -34,7 +34,7 @@ namespace BetterArmory.Items
 
         public override void CreateConfig(ConfigFile config)
         {
-            CritCoeff = config.Bind<float>("Item: "+ItemName,"Critical coefficient per stack",0.1f,"How much crit coefficient should item apply");
+            CritCoeff = config.Bind<float>("Item: "+ ItemLangTokenName, "Critical coefficient per stack",0.1f,"How much crit coefficient should item apply");
         }
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()

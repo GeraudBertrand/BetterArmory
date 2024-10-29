@@ -16,7 +16,7 @@ namespace BetterArmory.Items
         public override string ItemFullDescription => $"Increase armor by <style=cIsHealing>{ArmorBase.Value}</style> <style=cStack>(+{ArmorPerStack.Value} per stack)</style>";
         public override string ItemLore => "";
 
-        public override ItemTier Tier => ItemTier.Tier2;
+        public override ItemTier Tier => ItemTier.Tier1;
 
         public override Sprite ItemIcon => MainAssets.LoadAsset<Sprite>("MyOrb.png");
         public override GameObject ItemModel => MainAssets.LoadAsset<GameObject>("MyOrbDisplay.prefab");

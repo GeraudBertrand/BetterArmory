@@ -17,7 +17,7 @@ namespace BetterArmory.Items
         public override string ItemFullDescription => $"Reduce damage by <style=cIsHealing>{baseReduction.Value*100}%</style> <style=cStack>(+{stackReduction.Value*100}% per stack) for incoming damage.</style>";
         public override string ItemLore => "";
 
-        public override ItemTier Tier => ItemTier.Tier1;
+        public override ItemTier Tier => ItemTier.Tier3;
 
         public override Sprite ItemIcon => MainAssets.LoadAsset<Sprite>("MyOrb.png");
         public override GameObject ItemModel => MainAssets.LoadAsset<GameObject>("MyOrbDisplay.prefab");

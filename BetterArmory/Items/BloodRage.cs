@@ -14,15 +14,14 @@ namespace BetterArmory.Items
     {
         public override string ItemName => "Blood Rage";
         public override string ItemLangTokenName => "BLOOD_RAGE";
-        public override string ItemPickupDesc => " PICKUP DESCRIPTION";
-        public override string ItemFullDescription => " FULL DESCRIPTION";
+        public override string ItemPickupDesc => "Make your bleeding your strength. The damage inflicted on you will make your punches be the end.";
+        public override string ItemFullDescription => $"For each <style=cIsHealth>{PercentToStack.Value}%</style> <style=cStack>(-{BaseDamageGranted.Value}% per stack)</style> health lost, you will gain <style=cIsDamage>10 base damage</style>.";
         public override string ItemLore => " LORE ";
 
         public override ItemTier Tier => ItemTier.Tier3;
 
         public ConfigEntry<float> BaseDamageGranted;
-        public ConfigEntry<float> BasePercentToStack;
-        public ConfigEntry<float> StackPercentToStack;
+        public ConfigEntry<float> PercentToStack;
 
         public BuffDef DamageBuff { get; private set; }
 
@@ -41,7 +40,7 @@ namespace BetterArmory.Items
         public override void CreateConfig(ConfigFile config)
         {
             BaseDamageGranted = config.Bind<float>("Item: " + ItemLangTokenName, "Base damage granted by Blood Rage", 10f, "How much damage should the first gave you");
-            BasePercentToStack = config.Bind<float>("Item: " + ItemLangTokenName, "Percent of health lost for stack", 0.2f, "How much percent of health do you need to lose to gain a stack");
+            PercentToStack = config.Bind<float>("Item: " + ItemLangTokenName, "Percent of health lost for stack", 0.2f, "How much percent of health do you need to lose to gain a stack");
         }
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()
@@ -55,82 +54,48 @@ namespace BetterArmory.Items
             DamageBuff.name = "BUFF_Blood_Rage";
             DamageBuff.canStack = true;
             DamageBuff.isDebuff = false;
+            DamageBuff.isHidden = false;
+            DamageBuff.isCooldown = false;
+            DamageBuff.buffColor = Color.red;
+            DamageBuff.iconSprite = MainAssets.LoadAsset<Sprite>("MyOrb.png");
             ContentAddition.AddBuffDef(DamageBuff);
         }
 
         public override void Hooks()
         {
-            //Update buff on health
-            On.RoR2.CharacterBody.FixedUpdate += CalculateDamage;
-            //Update time buff on damage take
-            On.RoR2.HealthComponent.TakeDamage += ResetTimer;
+            //Update stack of buff on update
+            On.RoR2.CharacterBody.FixedUpdate += UpdateNbBuff;
             //Add bonus damage on buff count
             GetStatCoefficients += AddDamageReward;
         }
 
         
-
-        private void CalculateDamage(On.RoR2.CharacterBody.orig_FixedUpdate orig, RoR2.CharacterBody self)
+        private void UpdateNbBuff(On.RoR2.CharacterBody.orig_FixedUpdate orig, RoR2.CharacterBody self)
         {
             orig(self);
-            var rageComponent = self.GetComponent<RageComponent>();
-            if (!rageComponent) { 
-                rageComponent = self.gameObject.AddComponent<RageComponent>();
-                rageComponent.cachedHealth = self.healthComponent.health;
-            }
-            var newInventoryCount = GetCount(self);
-            var actualLife = self.healthComponent.health;
-            if(rageComponent.cachedInventoryCount != newInventoryCount)
+            var healthComp = self.healthComponent;
+            // Should make the nb of buff update want hp change.
+            if (self && GetCount(self) > 0)
             {
-                rageComponent.cachedInventoryCount = newInventoryCount;
-            }
-            if (rageComponent.cachedInventoryCount > 0)
-            {
-                var stack = StackOfPercentLost(actualLife, self.healthComponent.fullHealth,rageComponent.cachedInventoryCount);
-                rageComponent.cachedStack = stack;
-                if (!self.HasBuff(DamageBuff.buffIndex))
-                {
-                    self.AddTimedBuffAuthority(DamageBuff.buffIndex,20f);
-                }
-                //self.SetBuffCount(DamageBuff.buffIndex, rageComponent.cachedStack);
-                Chat.AddMessage(self.GetBuffCount(DamageBuff.buffIndex).ToString());
-            }
-            rageComponent.cachedHealth = actualLife;
-        }
-
-        private void ResetTimer(On.RoR2.HealthComponent.orig_TakeDamage orig, HealthComponent self, DamageInfo damageInfo)
-        {
-            orig(self,damageInfo);
-
-            var body = self.body;
-            if (body)
-            {
-                if (body.HasBuff(DamageBuff.buffIndex))
-                {
-                    RefreshTimedBuffs(body,DamageBuff,20f);
-                }
+                int countStack = StackOfPercentLost(healthComp.health, healthComp.fullHealth, GetCount(self));
+                self.SetBuffCount(DamageBuff.buffIndex, countStack);
             }
         }
 
         private void AddDamageReward(CharacterBody sender, StatHookEventArgs args)
         {
-            if (sender.HasBuff(DamageBuff)) { args.baseDamageAdd += BaseDamageGranted.Value * sender.GetBuffCount(DamageBuff); }
+            if (sender.HasBuff(DamageBuff)) {
+                args.baseDamageAdd += BaseDamageGranted.Value * sender.GetBuffCount(DamageBuff); 
+            }
         }
 
         private int StackOfPercentLost(float actual, float full, int itemcount)
         {
-            var actualPercent = Mathf.Round((actual*100)/ full);
+            var actualPercent = Mathf.Round((actual/full)*100);
             var lostPercent = 100 - actualPercent;
-            var denom = 0.3f/(1+BasePercentToStack.Value*itemcount);
-            int stack = (int)(lostPercent / denom);
+            var denom = (0.3f/(1+PercentToStack.Value*itemcount))*100; // Make denom be on 100%
+            int stack = Mathf.FloorToInt(lostPercent / denom); // ex:   51.2% % 25% = 2
             return stack;
-        }
-
-        public class RageComponent : MonoBehaviour
-        {
-            public int cachedInventoryCount = 0;
-            public int cachedStack = 0;
-            public float cachedHealth = 0;
         }
     }
 }
