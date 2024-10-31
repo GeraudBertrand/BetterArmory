@@ -71,6 +71,11 @@ namespace BetterArmory.Items
             ItemDef.canRemove = CanRemove;
             ItemDef.tier = Tier;
 
+            // Gross haxx, but possibly necessary
+#pragma warning disable CS0618 // Type or member is obsolete
+            ItemDef.deprecatedTier = Tier;
+#pragma warning restore CS0618 // Type or member is obsolete
+
             if (ItemTags.Length > 0) { ItemDef.tags = ItemTags; }
             var c = new CustomItem(ItemDef, CreateItemDisplayRules());
             ItemAPI.Add(c);
@@ -78,7 +83,7 @@ namespace BetterArmory.Items
 
         public virtual void Hooks() { }
 
-        //Based on ThinkInvis' methods
+
         public int GetCount(CharacterBody body)
         {
             if (!body || !body.inventory) { return 0; }

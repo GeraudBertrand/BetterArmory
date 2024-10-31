@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 935542845
+CRC: 1832332755
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 635f3e17293b548d04deda23aca9e4c2
+    Hash: 74b49a11e9d7ff1677097142645c0c2c
   TypeTreeHash:
     serializedVersion: 2
     Hash: a7a21288fe2bd6ae3724c7054e7a1302
@@ -29,10 +29,18 @@ ClassTypes:
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
+- Assets/Textures/Icons/Buff/SplinteredArrow.png
+- Assets/Textures/Icons/Buff/BloodRage.png
 - Assets/Models/Prefabs/Item/MyOrb/MyOrbDisplay.prefab
 - Assets/Textures/Icons/Item/MyOrb/MyOrb.png
+- Assets/Materials/Item/MitrixJuice/MitrixBottleMat.mat
+- Assets/Materials/Item/MitrixJuice/MitrixJuiceMat.mat
 - Assets/Models/Prefabs/Item/BloodRage/Magatama.prefab
+- Assets/Models/Prefabs/Item/MitrixJuice/MitrixJuiceDisplay.prefab
+- Assets/Textures/Icons/Item/MitrixJuice/MitrixJuice.png
+- Assets/Textures/Item/MitrixJuiceText.png
 - Assets/Materials/Item/BloodRage/Blood.mat
+- Assets/Textures/Item/MitrixBottleText.png
 - Assets/Materials/Item/MyOrb/OrbMaterial.mat
-- Assets/Textures/Icons/Item/BloodRage/BloodRage.png
+- Assets/Textures/Icons/Item/BloodRage/Magatama.png
 Dependencies: []

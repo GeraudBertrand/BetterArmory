@@ -20,7 +20,7 @@ namespace BetterArmory.Buffs
 
         public override Color BuffColor => Color.red;
 
-        public override Sprite IconSprite => MainAssets.LoadAsset<Sprite>("MyOrb.png");
+        public override Sprite IconSprite => MainAssets.LoadAsset<Sprite>("BloodRage.png");
 
         public override void Init(ConfigFile config)
         {

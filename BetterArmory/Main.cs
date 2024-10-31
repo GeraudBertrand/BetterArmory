@@ -18,7 +18,6 @@ namespace BetterArmory
     [BepInPlugin(ModGuid, ModName, ModVer)]
     [BepInDependency(R2API.R2API.PluginGUID, R2API.R2API.PluginVersion)]
     [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.EveryoneNeedSameModVersion)]
-    [R2APISubmoduleDependency(nameof(ItemAPI), nameof(LanguageAPI), nameof(ArtifactCodeAPI), nameof(RecalculateStatsAPI), nameof(ContentAddition), nameof(R2API.ContentManagement.R2APIContentManager))]
     public class Main : BaseUnityPlugin
     {
         public const string ModGuid = "com.Tios.BetterArmory";
