@@ -10,7 +10,7 @@ Better Armory est un mod de Risk of Rain 2 qui ajoute divers objets permettant d
 
 Icons | Items | Function
 ---|---:|---:
-<img src="https://raw.githubusercontent.com/GeraudBertrand/BetterArmory/master/BetterArmory/Icons/LittlePlate.png"/> | Little Plate | 
+<img src="https://raw.githubusercontent.com/GeraudBertrand/BetterArmory/master/BetterArmory/Icons/LittlePlate.png" width=100/> | Little Plate | 
 
 
 
