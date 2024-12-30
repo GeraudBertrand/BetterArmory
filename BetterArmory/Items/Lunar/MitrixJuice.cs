@@ -15,8 +15,8 @@ namespace BetterArmory.Items.Lunar
     {
         public override string ItemName => "Mitrix Juice";
         public override string ItemLangTokenName => "MITRIX_JUICE";
-        public override string ItemPickupDesc => "Mitrix Juice";
-        public override string ItemFullDescription => "Mitrix Juice";
+        public override string ItemPickupDesc => "A tonic to accelerate your attack! But at the risk of sacrificing your power ...";
+        public override string ItemFullDescription => "Increases attack speed by 60% ( + 60% per stack ) but reduces attack damage by 60% ( + 60% per stack )";
         public override string ItemLore => "Mitrix Juice";
 
         public override ItemTier Tier => ItemTier.Lunar;
@@ -25,8 +25,8 @@ namespace BetterArmory.Items.Lunar
         public override Sprite ItemIcon => MainAssets.LoadAsset<Sprite>("MitrixJuice.png");
 
 
-        protected ConfigEntry<float> ReduceDamageStack;
-        protected ConfigEntry<float> AugmentAttackSpeedStack;
+        protected ConfigEntry<float> ChangeStatBase;
+        protected ConfigEntry<float> ChangeStatStack;
 
         public override void Init(ConfigFile config)
         {
@@ -38,8 +38,8 @@ namespace BetterArmory.Items.Lunar
 
         public override void CreateConfig(ConfigFile config)
         {
-            ReduceDamageStack = config.Bind<float>("Item: "+ItemLangTokenName, "Reduction damage per stack",0.6f,"How much damage decrease should the player have per stack ?");
-            AugmentAttackSpeedStack = config.Bind<float>("Item: " + ItemLangTokenName, "Augmentation attack speed per stack",0.6f, "How much attack speed should the player have per stack ?");
+            ChangeStatBase = config.Bind<float>("Item: "+ItemLangTokenName, "Base modification of attack speed and damage",0.6f,"How much attack speed and damage change should the player have at base ?");
+            ChangeStatStack = config.Bind<float>("Item: " + ItemLangTokenName, "Modification of attack speed and damage per stack",0.2f, "How much attack speed and damage change should the player have per stack ?");
         }
 
 
@@ -57,8 +57,8 @@ namespace BetterArmory.Items.Lunar
         {
             if (sender && GetCount(sender) > 0)
             {
-                args.damageMultAdd -=  ReduceDamageStack.Value * GetCount(sender);
-                args.attackSpeedMultAdd += AugmentAttackSpeedStack.Value * GetCount(sender);
+                args.damageMultAdd -=  (ChangeStatBase.Value + ChangeStatStack.Value * GetCount(sender));
+                args.attackSpeedMultAdd += (ChangeStatBase.Value + ChangeStatStack.Value * GetCount(sender));
             }
         }
     }
