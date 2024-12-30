@@ -1,10 +1,8 @@
 ﻿using BepInEx;
-using BepInEx.Logging;
 using BetterArmory.Artifact;
 using BetterArmory.Buffs;
 using BetterArmory.Equipment;
 using BetterArmory.Items;
-using R2API;
 using R2API.Utils;
 using System;
 using System.Collections.Generic;
@@ -27,7 +25,6 @@ namespace BetterArmory
         public static AssetBundle MainAssets;
 
         public List<ArtifactBase> Artifacts = new List<ArtifactBase>();
-        public List<BuffBase> Buffs = new List<BuffBase>();
         public List<ItemBase> Items = new List<ItemBase>();
         public List<EquipmentBase> Equipments = new List<EquipmentBase>();
 
@@ -46,7 +43,7 @@ namespace BetterArmory
             //This section automatically scans the project for all artifacts
             var ArtifactTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(ArtifactBase)));
 
-            Logger.LogInfo($"ARTIFACT creation phase\n");
+            Logger.LogInfo($"ARTIFACT creation phase :");
             foreach (var artifactType in ArtifactTypes)
             {
                 ArtifactBase artifact = (ArtifactBase)Activator.CreateInstance(artifactType);
@@ -58,25 +55,10 @@ namespace BetterArmory
             }
 
 
-            //This section automatically scans the project for all buffs
-            /*var BuffTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(BuffBase)));
-
-            Logger.LogInfo($"Buff creation phase\n");
-            foreach (var buffType in BuffTypes)
-            {
-                BuffBase buff = (BuffBase)Activator.CreateInstance(buffType);
-                if (ValidateBuff(buff, Buffs))
-                {
-                    buff.Init(Config);
-                    Logger.LogInfo($"{buff.BuffName} was created !");
-                }
-            }*/
-
-
             //This section automatically scans the project for all items
             var ItemTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(ItemBase)));
 
-            Logger.LogInfo($"ITEM creation phase\n");
+            Logger.LogInfo($"ITEM creation phase :");
             foreach (var itemType in ItemTypes)
             {
                 ItemBase item = (ItemBase)System.Activator.CreateInstance(itemType);
@@ -91,7 +73,7 @@ namespace BetterArmory
             //this section automatically scans the project for all equipment
             var EquipmentTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(EquipmentBase)));
 
-            Logger.LogInfo($"EQUIPMENT creation phase\n");
+            Logger.LogInfo($"EQUIPMENT creation phase :");
             foreach (var equipmentType in EquipmentTypes)
             {
                 EquipmentBase equipment = (EquipmentBase)System.Activator.CreateInstance(equipmentType);
@@ -154,17 +136,6 @@ namespace BetterArmory
                 return true;
             }
             return false;
-        }
-
-        /// <summary>
-        /// A helper to easily set up and initialize an buff from your buff classes.
-        /// </summary>
-        /// <param name="buff">A new instance of an BuffBase class."</param>
-        /// <param name="buffList">The list you would like to add this to if it passes the config check.</param>
-        public bool ValidateBuff(BuffBase buff, List<BuffBase> buffList)
-        {
-            buffList.Add(buff);
-            return true;
         }
     }
 }

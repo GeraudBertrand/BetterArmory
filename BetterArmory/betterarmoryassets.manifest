@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1832332755
+CRC: 819833548
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 74b49a11e9d7ff1677097142645c0c2c
+    Hash: ca76f76000da0f88f583168ad4412abe
   TypeTreeHash:
     serializedVersion: 2
     Hash: a7a21288fe2bd6ae3724c7054e7a1302
@@ -29,18 +29,40 @@ ClassTypes:
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
+- Assets/Models/Prefabs/Item/BrokenArrow/BrokenArrowDisplay.prefab
+- Assets/Textures/Materials/LittlePlate/Armor_plate_ArmorPlate_BaseColor.png
+- Assets/Textures/Materials/BrokenArrow/BrokenShaft_Normal.png
+- Assets/Textures/Icons/Item/Bulwark/Bulwark.png
+- Assets/Materials/Item/BrokenArrow/Feather.mat
+- Assets/Textures/Materials/LittlePlate/Armor_plate_ArmorPlate_Roughness.png
+- Assets/Materials/Item/Bulwark/BulwarkMat.mat
+- Assets/Textures/Materials/Bulwark/Shield_low_Main_DirectX_Normal.jpg
+- Assets/Textures/Materials/LittlePlate/Armor_plate_ArmorPlate_Metallic.png
 - Assets/Textures/Icons/Buff/SplinteredArrow.png
 - Assets/Textures/Icons/Buff/BloodRage.png
-- Assets/Models/Prefabs/Item/MyOrb/MyOrbDisplay.prefab
+- Assets/Textures/Materials/Bulwark/Shield_low_Main_BaseColor.png
+- Assets/Textures/Materials/BrokenArrow/BrokenShaft.png
 - Assets/Textures/Icons/Item/MyOrb/MyOrb.png
+- Assets/Textures/Materials/BrokenArrow/BrokenFeather.png
 - Assets/Materials/Item/MitrixJuice/MitrixBottleMat.mat
+- Assets/Textures/Icons/Item/LittlePlate/LittlePlate.png
+- Assets/Models/Prefabs/Item/MyOrb/MyOrbDisplay.prefab
+- Assets/Textures/Materials/LittlePlate/Armor_plate_ArmorPlate_Normal.png
+- Assets/Models/Prefabs/Item/LittlePlate/LittlePlateDisplay.prefab
+- Assets/Textures/Materials/Bulwark/Shield_low_Main_Roughness.jpg
 - Assets/Materials/Item/MitrixJuice/MitrixJuiceMat.mat
-- Assets/Models/Prefabs/Item/BloodRage/Magatama.prefab
+- Assets/Models/Prefabs/Item/BloodRage/MagatamaDisplay.prefab
+- Assets/Materials/Item/BrokenArrow/Shaft.mat
 - Assets/Models/Prefabs/Item/MitrixJuice/MitrixJuiceDisplay.prefab
+- Assets/Textures/Materials/Bulwark/Shield_low_Main_Metallic.jpg
+- Assets/Textures/Icons/Item/BrokenArrow/BrokenArrow_icon.png
 - Assets/Textures/Icons/Item/MitrixJuice/MitrixJuice.png
-- Assets/Textures/Item/MitrixJuiceText.png
-- Assets/Materials/Item/BloodRage/Blood.mat
-- Assets/Textures/Item/MitrixBottleText.png
+- Assets/Materials/Item/LittlePlate/ArmorMat.mat
+- Assets/Textures/Materials/MitrixJuice/MitrixJuiceText.png
+- Assets/Textures/Materials/Bulwark/Shield_low_Main_AmbientOcclusion.jpg
+- Assets/Models/Prefabs/Item/Bulwark/BulwarkDisplay.prefab
+- Assets/Textures/Materials/MitrixJuice/MitrixBottleText.png
 - Assets/Materials/Item/MyOrb/OrbMaterial.mat
+- Assets/Materials/Item/BloodRage/Blood.mat
 - Assets/Textures/Icons/Item/BloodRage/Magatama.png
 Dependencies: []

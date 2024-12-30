@@ -1,4 +1,5 @@
 ﻿using BetterArmory.Utils.Components;
+using R2API;
 using RoR2;
 using System.Collections.Generic;
 using UnityEngine;
@@ -55,6 +56,24 @@ namespace BetterArmory.Utils
             if (!body || body.GetBuffCount(buffDef) <= 0) { return; }
             
         }
+    }
 
+    internal static class Buffs
+    {
+        internal static BuffDef AddNewBuff(string buffName, Sprite buffIcon, Color buffColor, bool canStack = false, bool isDebuff = false, bool isHidden = false, EliteDef elideDef = null)
+        {
+            //IL_0010: Unknown result type (might be due to invalid IL or missing references)
+            //IL_0011: Unknown result type (might be due to invalid IL or missing references)
+            BuffDef val = ScriptableObject.CreateInstance<BuffDef>();
+            val.name = $"BUFF_{buffName}";
+            val.buffColor = buffColor;
+            val.canStack = canStack;
+            val.isDebuff = isDebuff;
+            val.eliteDef = elideDef;
+            val.iconSprite = buffIcon;
+            val.isHidden = isHidden;
+            ContentAddition.AddBuffDef(val);
+            return val;
+        }
     }
 }

@@ -9,22 +9,21 @@ namespace BetterArmory.Items.Tier1
 {
     public class LittlePlate : ItemBase
     {
-
         public override string ItemName => "Little Plate";
         public override string ItemLangTokenName => "LITTLE_PLATE";
         public override string ItemPickupDesc => "Gain armor to reinforce yourself.";
         public override string ItemFullDescription => $"Increase armor by <style=cIsHealing>{ArmorBase.Value}</style> <style=cStack>(+{ArmorPerStack.Value} per stack)</style>";
-        public override string ItemLore => "";
+        public override string ItemLore => $"";
 
         public override ItemTier Tier => ItemTier.Tier1;
 
-        public override Sprite ItemIcon => MainAssets.LoadAsset<Sprite>("MyOrb.png");
-        public override GameObject ItemModel => MainAssets.LoadAsset<GameObject>("MyOrbDisplay.prefab");
+        public override Sprite ItemIcon => MainAssets.LoadAsset<Sprite>("LittlePlate.png");
+        public override GameObject ItemModel => MainAssets.LoadAsset<GameObject>("LittlePlateDisplay.prefab");
 
 
 
-        public ConfigEntry<float> ArmorBase;
-        public ConfigEntry<float> ArmorPerStack;
+        protected ConfigEntry<float> ArmorBase;
+        protected ConfigEntry<float> ArmorPerStack;
 
         public override void Init(ConfigFile config)
         {

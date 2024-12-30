@@ -24,7 +24,7 @@ namespace BetterArmory.Items.Tier2
         public override Sprite ItemIcon => MainAssets.LoadAsset<Sprite>("MyOrb.png");
         public override GameObject ItemModel => MainAssets.LoadAsset<GameObject>("MyOrbDisplay.prefab");
 
-        public ConfigEntry<float> GrantedHealth;
+        protected ConfigEntry<float> GrantedHealth;
 
         public override void Init(ConfigFile config)
         {

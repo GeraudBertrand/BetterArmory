@@ -52,6 +52,9 @@ namespace BetterArmory.Items
         }
 
         public abstract ItemDisplayRuleDict CreateItemDisplayRules();
+
+        public virtual void CreateBuffs() { }
+
         protected void CreateItem()
         {
             if (AIBlacklisted)
@@ -80,6 +83,7 @@ namespace BetterArmory.Items
             var c = new CustomItem(ItemDef, CreateItemDisplayRules());
             ItemAPI.Add(c);
         }
+
 
         public virtual void Hooks() { }
 

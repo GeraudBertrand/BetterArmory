@@ -1,4 +1,5 @@
 ﻿using BepInEx.Configuration;
+using BetterArmory.Utils;
 using R2API;
 using RoR2;
 using System;
@@ -17,16 +18,17 @@ namespace BetterArmory.Items.Tier1
 
         public override ItemTier Tier => ItemTier.Tier1;
 
-        public override GameObject ItemModel => MainAssets.LoadAsset<GameObject>("MyOrbDisplay.prefab");
-        public override Sprite ItemIcon => MainAssets.LoadAsset<Sprite>("MyOrb.png");
+        public override GameObject ItemModel => MainAssets.LoadAsset<GameObject>("BrokenArrowDisplay.prefab");
+        public override Sprite ItemIcon => MainAssets.LoadAsset<Sprite>("BrokenArrow_icon.png");
+
+        public static BuffDef MarkDebuff;
 
 
-        public ConfigEntry<float> ChanceToMark;
-        public ConfigEntry<float> TimeDebuff;
-        public ConfigEntry<float> BaseDamageBonusMark;
-        public ConfigEntry<float> StackDamageBonusMark;
-        
-        public BuffDef MarkDebuff { get; private set; }
+        protected ConfigEntry<float> ChanceToMark;
+        protected ConfigEntry<float> TimeDebuff;
+        protected ConfigEntry<float> BaseDamageBonusMark;
+        protected ConfigEntry<float> StackDamageBonusMark;
+
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()
         {
@@ -37,7 +39,7 @@ namespace BetterArmory.Items.Tier1
         {
             CreateConfig(config);
             CreateLang();
-            CreateBuff();
+            CreateBuffs();
             CreateItem();
             Hooks();
         }
@@ -49,17 +51,9 @@ namespace BetterArmory.Items.Tier1
             BaseDamageBonusMark = config.Bind<float>("Item: " + ItemLangTokenName, "Base damage bonus on debuff enemy", 0.25f, "How much bonus damage debuff give at base ?");
             StackDamageBonusMark = config.Bind<float>("Item: " + ItemLangTokenName, "Stakc damage bonus on debuff enemy", 0.1f, "How much bonus damage debuff give by stack ?");
         }
-        private void CreateBuff()
+        public override void CreateBuffs()
         {
-            MarkDebuff = ScriptableObject.CreateInstance<BuffDef>();
-            MarkDebuff.name = "BUFF_Splintered_Mark";
-            MarkDebuff.canStack = false;
-            MarkDebuff.isDebuff = true;
-            MarkDebuff.isHidden = false;
-            MarkDebuff.isCooldown = false;
-            MarkDebuff.buffColor = Color.magenta;
-            MarkDebuff.iconSprite = MainAssets.LoadAsset<Sprite>("SplinteredArrow.png");
-            ContentAddition.AddBuffDef(MarkDebuff);
+            MarkDebuff = Buffs.AddNewBuff("Splintered_Mark", MainAssets.LoadAsset<Sprite>("SplinteredArrow.png"), Color.magenta, canStack: false, isDebuff: true, isHidden: false);
         }
 
         public override void Hooks()

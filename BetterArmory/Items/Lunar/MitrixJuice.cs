@@ -25,8 +25,8 @@ namespace BetterArmory.Items.Lunar
         public override Sprite ItemIcon => MainAssets.LoadAsset<Sprite>("MitrixJuice.png");
 
 
-        public ConfigEntry<float> ReduceDamageStack;
-        public ConfigEntry<float> AugmentAttackSpeedStack;
+        protected ConfigEntry<float> ReduceDamageStack;
+        protected ConfigEntry<float> AugmentAttackSpeedStack;
 
         public override void Init(ConfigFile config)
         {
@@ -58,7 +58,7 @@ namespace BetterArmory.Items.Lunar
             if (sender && GetCount(sender) > 0)
             {
                 args.damageMultAdd -=  ReduceDamageStack.Value * GetCount(sender);
-                args.attackSpeedMultAdd -= AugmentAttackSpeedStack.Value * GetCount(sender);
+                args.attackSpeedMultAdd += AugmentAttackSpeedStack.Value * GetCount(sender);
             }
         }
     }

@@ -1,4 +1,5 @@
 ﻿using BepInEx.Configuration;
+using BetterArmory.Utils;
 using R2API;
 using R2API.Utils;
 using RoR2;
@@ -20,12 +21,12 @@ namespace BetterArmory.Items.Tier3
 
         public override ItemTier Tier => ItemTier.Tier3;
 
-        public ConfigEntry<float> BaseDamageGranted;
-        public ConfigEntry<float> PercentToStack;
+        protected ConfigEntry<float> BaseDamageGranted;
+        protected ConfigEntry<float> PercentToStack;
 
-        public BuffDef DamageBuff { get; private set; }
+        public static BuffDef DamageBuff;
 
-        public override Sprite ItemIcon => MainAssets.LoadAsset<Sprite>("BloodRage.png");
+        public override Sprite ItemIcon => MainAssets.LoadAsset<Sprite>("Magatama.png");
         public override GameObject ItemModel => MainAssets.LoadAsset<GameObject>("Magatama.prefab");
 
         public override void Init(ConfigFile config)
@@ -50,15 +51,7 @@ namespace BetterArmory.Items.Tier3
 
         private void CreateBuff()
         {
-            DamageBuff = ScriptableObject.CreateInstance<BuffDef>();
-            DamageBuff.name = "BUFF_Blood_Rage";
-            DamageBuff.canStack = true;
-            DamageBuff.isDebuff = false;
-            DamageBuff.isHidden = false;
-            DamageBuff.isCooldown = false;
-            DamageBuff.buffColor = Color.red;
-            DamageBuff.iconSprite = MainAssets.LoadAsset<Sprite>("BloodRage.png");
-            ContentAddition.AddBuffDef(DamageBuff);
+            DamageBuff = Buffs.AddNewBuff("Blood_Rage",MainAssets.LoadAsset<Sprite>("BloodRage.png"),Color.red,canStack: true);
         }
 
         public override void Hooks()

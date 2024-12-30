@@ -39,7 +39,7 @@ namespace BetterArmory.Equipment
         protected void SetupBuff()
         {
             ConvertBuff = ScriptableObject.CreateInstance<BuffDef>();
-            ConvertBuff.name = "BUFF_";
+            ConvertBuff.name = "BUFF_LIFESWITCHSHIELD";
             ConvertBuff.canStack = true;
             ConvertBuff.isCooldown = false;
             ConvertBuff.isDebuff = false;

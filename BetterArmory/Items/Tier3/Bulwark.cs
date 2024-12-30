@@ -19,12 +19,12 @@ namespace BetterArmory.Items.Tier3
 
         public override ItemTier Tier => ItemTier.Tier3;
 
-        public override Sprite ItemIcon => MainAssets.LoadAsset<Sprite>("MyOrb.png");
-        public override GameObject ItemModel => MainAssets.LoadAsset<GameObject>("MyOrbDisplay.prefab");
+        public override GameObject ItemModel => MainAssets.LoadAsset<GameObject>("BulwarkDisplay.prefab");
+        public override Sprite ItemIcon => MainAssets.LoadAsset<Sprite>("Bulwark.png");
 
 
-        public ConfigEntry<float> baseReduction;
-        public ConfigEntry<float> stackReduction;
+        protected ConfigEntry<float> baseReduction;
+        protected ConfigEntry<float> stackReduction;
 
         public override void Init(ConfigFile config)
         {
