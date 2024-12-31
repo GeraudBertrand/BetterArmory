@@ -21,8 +21,8 @@ namespace BetterArmory.Items.Tier2
 
         public override ItemTier Tier => ItemTier.Tier2;
 
-        public override Sprite ItemIcon => MainAssets.LoadAsset<Sprite>("MyOrb.png");
-        public override GameObject ItemModel => MainAssets.LoadAsset<GameObject>("MyOrbDisplay.prefab");
+        public override Sprite ItemIcon => MainAssets.LoadAsset<Sprite>("GiantGlovesIcon.png");
+        public override GameObject ItemModel => MainAssets.LoadAsset<GameObject>("GiantGlovesDisplay.prefab");
 
         protected ConfigEntry<float> GrantedHealth;
 

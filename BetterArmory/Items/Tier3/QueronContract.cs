@@ -20,8 +20,8 @@ namespace BetterArmory.Items.Tier3
 
         public override ItemTier Tier => ItemTier.Tier1; //ItemTier.Lunar
 
-        public override GameObject ItemModel => MainAssets.LoadAsset<GameObject>("MyOrbDisplay.prefab");
-        public override Sprite ItemIcon => MainAssets.LoadAsset<Sprite>("MyOrb.png");
+        public override GameObject ItemModel => MainAssets.LoadAsset<GameObject>("QueronBookDisplay.prefab");
+        public override Sprite ItemIcon => MainAssets.LoadAsset<Sprite>("QueronBookIcon.png");
 
         protected ConfigEntry<int> BaseStatPerm;
         protected ConfigEntry<int> StackStatPerm;

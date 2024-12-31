@@ -4,7 +4,6 @@ using R2API.Utils;
 using RoR2;
 using UnityEngine;
 using static BetterArmory.Main;
-using BetterArmory.Buffs;
 
 namespace BetterArmory.Equipment
 {

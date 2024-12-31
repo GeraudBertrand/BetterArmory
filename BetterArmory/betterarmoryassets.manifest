@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3802929875
+CRC: 1436625499
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: fd2df08a407dbf5747a2ff5b1451f0ba
+    Hash: bbfb9c7fdcde32a39b20fe7fbecdfc9d
   TypeTreeHash:
     serializedVersion: 2
     Hash: a7a21288fe2bd6ae3724c7054e7a1302
@@ -35,6 +35,7 @@ Assets:
 - Assets/Materials/Item/BrokenArrow/Feather.mat
 - Assets/Textures/Icons/Item/GoldenArrow/GoldenArrowIcon.png
 - Assets/Materials/Item/Bulwark/BulwarkMat.mat
+- Assets/Models/Prefabs/Item/GoldenArrow/GoldenArrowDisplay.prefab
 - Assets/Textures/Materials/Bulwark/Shield_low_Main_DirectX_Normal.jpg
 - Assets/Textures/Icons/Buff/BloodRage.png
 - Assets/Textures/Materials/Bulwark/Shield_low_Main_BaseColor.png

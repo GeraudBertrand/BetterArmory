@@ -1,6 +1,5 @@
 ﻿using BepInEx;
 using BetterArmory.Artifact;
-using BetterArmory.Buffs;
 using BetterArmory.Equipment;
 using BetterArmory.Items;
 using R2API.Utils;

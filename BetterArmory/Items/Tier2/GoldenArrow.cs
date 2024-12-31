@@ -20,8 +20,8 @@ namespace BetterArmory.Items.Tier2
 
         public override ItemTier Tier => ItemTier.Tier2;
 
-        public override GameObject ItemModel => MainAssets.LoadAsset<GameObject>("assets/models/prefabs/item/puppet/puppet.prefab");
-        public override Sprite ItemIcon => MainAssets.LoadAsset<Sprite>("MyOrb.png");
+        public override GameObject ItemModel => MainAssets.LoadAsset<GameObject>("GoldenArrowDisplay.prefab");
+        public override Sprite ItemIcon => MainAssets.LoadAsset<Sprite>("GoldenArrowIcon.png");
 
         protected ConfigEntry<float> CritCoeff;
 
