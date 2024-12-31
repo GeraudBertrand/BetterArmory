@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 819833548
+CRC: 3802929875
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: ca76f76000da0f88f583168ad4412abe
+    Hash: fd2df08a407dbf5747a2ff5b1451f0ba
   TypeTreeHash:
     serializedVersion: 2
     Hash: a7a21288fe2bd6ae3724c7054e7a1302
@@ -31,38 +31,54 @@ SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Models/Prefabs/Item/BrokenArrow/BrokenArrowDisplay.prefab
 - Assets/Textures/Materials/LittlePlate/Armor_plate_ArmorPlate_BaseColor.png
-- Assets/Textures/Materials/BrokenArrow/BrokenShaft_Normal.png
-- Assets/Textures/Icons/Item/Bulwark/Bulwark.png
+- Assets/Textures/Icons/Item/QueronBook/QueronBookIcon.png
 - Assets/Materials/Item/BrokenArrow/Feather.mat
-- Assets/Textures/Materials/LittlePlate/Armor_plate_ArmorPlate_Roughness.png
+- Assets/Textures/Icons/Item/GoldenArrow/GoldenArrowIcon.png
 - Assets/Materials/Item/Bulwark/BulwarkMat.mat
 - Assets/Textures/Materials/Bulwark/Shield_low_Main_DirectX_Normal.jpg
-- Assets/Textures/Materials/LittlePlate/Armor_plate_ArmorPlate_Metallic.png
-- Assets/Textures/Icons/Buff/SplinteredArrow.png
 - Assets/Textures/Icons/Buff/BloodRage.png
 - Assets/Textures/Materials/Bulwark/Shield_low_Main_BaseColor.png
-- Assets/Textures/Materials/BrokenArrow/BrokenShaft.png
 - Assets/Textures/Icons/Item/MyOrb/MyOrb.png
 - Assets/Textures/Materials/BrokenArrow/BrokenFeather.png
-- Assets/Materials/Item/MitrixJuice/MitrixBottleMat.mat
-- Assets/Textures/Icons/Item/LittlePlate/LittlePlate.png
-- Assets/Models/Prefabs/Item/MyOrb/MyOrbDisplay.prefab
-- Assets/Textures/Materials/LittlePlate/Armor_plate_ArmorPlate_Normal.png
-- Assets/Models/Prefabs/Item/LittlePlate/LittlePlateDisplay.prefab
-- Assets/Textures/Materials/Bulwark/Shield_low_Main_Roughness.jpg
 - Assets/Materials/Item/MitrixJuice/MitrixJuiceMat.mat
+- Assets/Models/Prefabs/Item/LittlePlate/LittlePlateDisplay.prefab
 - Assets/Models/Prefabs/Item/BloodRage/MagatamaDisplay.prefab
+- Assets/Textures/Materials/Bulwark/Shield_low_Main_Roughness.jpg
 - Assets/Materials/Item/BrokenArrow/Shaft.mat
 - Assets/Models/Prefabs/Item/MitrixJuice/MitrixJuiceDisplay.prefab
-- Assets/Textures/Materials/Bulwark/Shield_low_Main_Metallic.jpg
-- Assets/Textures/Icons/Item/BrokenArrow/BrokenArrow_icon.png
-- Assets/Textures/Icons/Item/MitrixJuice/MitrixJuice.png
-- Assets/Materials/Item/LittlePlate/ArmorMat.mat
-- Assets/Textures/Materials/MitrixJuice/MitrixJuiceText.png
 - Assets/Textures/Materials/Bulwark/Shield_low_Main_AmbientOcclusion.jpg
-- Assets/Models/Prefabs/Item/Bulwark/BulwarkDisplay.prefab
-- Assets/Textures/Materials/MitrixJuice/MitrixBottleText.png
-- Assets/Materials/Item/MyOrb/OrbMaterial.mat
+- Assets/Textures/Icons/Item/MitrixJuice/MitrixJuice.png
+- Assets/Models/Prefabs/Item/GiantGloves/GiantGlovesDisplay.prefab
+- Assets/Textures/Icons/Item/MidasContract/MidasContractIcon.png
+- Assets/Textures/Materials/MitrixJuice/MitrixJuiceText.png
 - Assets/Materials/Item/BloodRage/Blood.mat
+- Assets/Textures/Materials/MitrixJuice/MitrixBottleText.png
+- Assets/Textures/Materials/QueronBook/QueronBook.png
 - Assets/Textures/Icons/Item/BloodRage/Magatama.png
+- Assets/Models/Prefabs/Item/QueronBook/QueronBookDisplay.prefab
+- Assets/Textures/Icons/Item/GiantGloves/GiantGlovesIcon.png
+- Assets/Textures/Materials/GoldenArrow/GoldenArrowNormalText.jpg
+- Assets/Materials/Item/MidasContract/MidasContractMat.mat
+- Assets/Textures/Materials/GiantGloves/GiantGlovesText.png
+- Assets/Textures/Materials/BrokenArrow/BrokenShaft_Normal.png
+- Assets/Textures/Icons/Item/Bulwark/Bulwark.png
+- Assets/Textures/Materials/LittlePlate/Armor_plate_ArmorPlate_Roughness.png
+- Assets/Textures/Materials/MidasContract/MidasContractText.png
+- Assets/Textures/Materials/LittlePlate/Armor_plate_ArmorPlate_Metallic.png
+- Assets/Textures/Icons/Buff/SplinteredArrow.png
+- Assets/Models/Prefabs/Item/MyOrb/MyOrbDisplay.prefab
+- Assets/Textures/Materials/BrokenArrow/BrokenShaft.png
+- Assets/Materials/Item/QueronBook/QueronBookMat.mat
+- Assets/Materials/Item/MitrixJuice/MitrixBottleMat.mat
+- Assets/Textures/Icons/Item/LittlePlate/LittlePlate.png
+- Assets/Textures/Materials/LittlePlate/Armor_plate_ArmorPlate_Normal.png
+- Assets/Models/Prefabs/Item/MidasContract/MidasContractDisplay.prefab
+- Assets/Textures/Materials/Bulwark/Shield_low_Main_Metallic.jpg
+- Assets/Materials/Item/LittlePlate/ArmorMat.mat
+- Assets/Textures/Icons/Item/BrokenArrow/BrokenArrow_icon.png
+- Assets/Textures/Materials/GoldenArrow/GoldenArrowMetalText.jpg
+- Assets/Textures/Materials/GoldenArrow/GoldenArrowColorText.jpg
+- Assets/Models/Prefabs/Item/Bulwark/BulwarkDisplay.prefab
+- Assets/Materials/Item/GiantGloves/GiantGlovesMat.mat
+- Assets/Materials/Item/MyOrb/OrbMaterial.mat
 Dependencies: []

@@ -17,9 +17,9 @@ Icons | Items | Function
 
 Icons | Items | Function
 ---|---|---:
-<img src="https://raw.githubusercontent.com/GeraudBertrand/BetterArmory/master/BetterArmory/Icons/GoldenArrow.png" width=100/> | **Golden Arrow** | <span style="font-size:1.1rem;font-weight:400"> Augmente les dégâts des critiques du joueur de 20% ( *+ 20% par stack* ) </span>
-<img src="https://raw.githubusercontent.com/GeraudBertrand/BetterArmory/master/BetterArmory/Icons/MidasContract.png" width=100/>|**Midas Contract**| <span style="font-size:1.1rem;font-weight:400"> Killing spree augmente le gain d'or du joueur pour la durée de la tuerie. </span>
-<img src="https://raw.githubusercontent.com/GeraudBertrand/BetterArmory/master/BetterArmory/Icons/GiantGloves.png" width=100/>|**Giant Gloves**| <span style="font-size:1.1rem;font-weight:400"> Augmente la quantité de vie maximale de 5% ( *+ 5% par stack* ). Augmente les dégâts de 3% de votre vie maximale</span>
+<img src="https://raw.githubusercontent.com/GeraudBertrand/BetterArmory/master/BetterArmory/Icons/GoldenArrowIcon.png" width=100/> | **Golden Arrow** | <span style="font-size:1.1rem;font-weight:400"> Augmente les dégâts des critiques du joueur de 20% ( *+ 20% par stack* ) </span>
+<img src="https://raw.githubusercontent.com/GeraudBertrand/BetterArmory/master/BetterArmory/Icons/MidasContractIcon.png" width=100/>|**Midas Contract**| <span style="font-size:1.1rem;font-weight:400"> Killing spree augmente le gain d'or du joueur pour la durée de la tuerie. </span>
+<img src="https://raw.githubusercontent.com/GeraudBertrand/BetterArmory/master/BetterArmory/Icons/GiantGlovesIcon.png" width=100/>|**Giant Gloves**| <span style="font-size:1.1rem;font-weight:400"> Augmente la quantité de vie maximale de 5% ( *+ 5% par stack* ). Augmente les dégâts de 3% de votre vie maximale</span>
 
 <br>
 <br>
@@ -29,8 +29,8 @@ Icons | Items | Function
 Icons | Items | Function
 ---|---|---:
 <img src="https://raw.githubusercontent.com/GeraudBertrand/BetterArmory/master/BetterArmory/Icons/Magatama.png" width=100/> | **Blood Rage** | <span style="font-size:1.1rem;font-weight:400"> Faites de vos saignements votre force. Les dommages qui vous sont infligés feront de vos coups de poing la fin. Pour chaque 25% (* - 10% par stack*) de vie manquant, augmente l'attaque de 10</span>
-<img src="https://raw.githubusercontent.com/GeraudBertrand/BetterArmory/master/BetterArmory/Icons/MidasContract.png" width=100/>|**Bulwark**| <span style="font-size:1.1rem;font-weight:400"> Permet de résister au dégâts de 10% ( *+ 20% par pile* )  </span>
-<img src="https://raw.githubusercontent.com/GeraudBertrand/BetterArmory/master/BetterArmory/Icons/MidasContract.png" width=100/>|**Queron Contract**| <span style="font-size:1.1rem;font-weight:400"> Tuer un ennemi donne une chance ( 1% ) d'obtenir un bonus permanent à une stat. **( Valeur dépendante de la stat )** </span>
+<img src="https://raw.githubusercontent.com/GeraudBertrand/BetterArmory/master/BetterArmory/Icons/Bulwark.png" width=100/>|**Bulwark**| <span style="font-size:1.1rem;font-weight:400"> Permet de résister au dégâts de 10% ( *+ 20% par pile* )  </span>
+<img src="https://raw.githubusercontent.com/GeraudBertrand/BetterArmory/master/BetterArmory/Icons/QueronBookIcon.png" width=100/>|**Queron Contract**| <span style="font-size:1.1rem;font-weight:400"> Tuer un ennemi donne une chance ( 1% ) d'obtenir un bonus permanent à une stat. **( Valeur dépendante de la stat )** </span>
 
 <br>
 <br>
