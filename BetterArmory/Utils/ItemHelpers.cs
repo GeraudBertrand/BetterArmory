@@ -1,4 +1,5 @@
-﻿using BetterArmory.Utils.Components;
+﻿using BepInEx.Configuration;
+using BetterArmory.Utils.Components;
 using R2API;
 using RoR2;
 using System.Collections.Generic;
@@ -74,6 +75,28 @@ namespace BetterArmory.Utils
             val.isHidden = isHidden;
             ContentAddition.AddBuffDef(val);
             return val;
+        }
+    }
+
+    internal static class ConfigCreator
+    {
+        internal static ConfigEntry<int> IntEntry(ConfigFile config, string itemName, string key, int value, string desc)
+        {
+            return config.Bind<int>( itemName, key, value, desc);
+        }
+
+        internal static ConfigEntry<float> FloatEntry(ConfigFile config, string itemName, string key, float value, string desc)
+        {
+            return config.Bind<float>( itemName, key, value, desc);
+        }
+
+        internal static ConfigEntry<string> StringEntry(ConfigFile config, string itemName, string key, string value, string desc)
+        {
+            return config.Bind<string>( itemName, key, value, desc);
+        }
+        internal static ConfigEntry<bool> BoolEntry(ConfigFile config, string itemName, string key, bool value, string desc)
+        {
+            return config.Bind<bool>(itemName, key, value, desc);
         }
     }
 }

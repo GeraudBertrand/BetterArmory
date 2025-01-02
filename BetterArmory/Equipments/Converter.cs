@@ -11,12 +11,12 @@ namespace BetterArmory.Equipment
     {
         public override string EquipmentName => "Converter";
         public override string EquipmentLangTokenName => "CONVERTER";
-        public override string EquipmentPickupDesc => "";
-        public override string EquipmentFullDescription => "";
+        public override string EquipmentPickupDesc => "Shield is BETTER than life !";
+        public override string EquipmentFullDescription => $"Exchange {ConverterRate.Value}% of max HP to blue shield.";
         public override string EquipmentLore => "";
 
-        public override GameObject EquipmentModel => MainAssets.LoadAsset<GameObject>("assets/models/prefabs/equipment/converteur/converteur.prefab");
-        public override Sprite EquipmentIcon => MainAssets.LoadAsset<Sprite>("assets/textures/icons/item/littleplate_icon.png");
+        public override GameObject EquipmentModel => MainAssets.LoadAsset<GameObject>("ConverterDisplay.prefab");
+        public override Sprite EquipmentIcon => MainAssets.LoadAsset<Sprite>("ConverterIcon.png");
 
         public ConfigEntry<float> ConverterRate;
         public ConfigEntry<float> ConverterCooldown;
@@ -60,13 +60,6 @@ namespace BetterArmory.Equipment
             return new ItemDisplayRuleDict();
         }
 
-
-        /// <summary>
-        /// Hook in the awake and use a buff to check for change
-        /// Maybe : slot.characterBody.isLocalPlayer
-        /// </summary>
-        /// <param name="slot"></param>
-        /// <returns></returns>
         protected override bool ActivateEquipment(EquipmentSlot slot)
         {
             CharacterBody body = slot.characterBody;
@@ -74,7 +67,7 @@ namespace BetterArmory.Equipment
             ChatMessage.SendColored("Converting...", Color.green);
 
             var health = body.healthComponent;
-            if (health.fullHealth > 1f)
+            if (health.fullHealth > 100f)
             {
                 body.AddBuff(ConvertBuff);
                 return true;
@@ -92,8 +85,6 @@ namespace BetterArmory.Equipment
                 exchange = sender.baseMaxHealth * ConverterRate.Value;
                 sender.baseMaxShield += exchange;
                 sender.baseMaxHealth -= exchange;
-
-                ChatMessage.SendColored("Conversion done !", Color.green);
                 sender.RemoveBuff(ConvertBuff);
             }
         }

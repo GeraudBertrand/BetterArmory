@@ -1,10 +1,8 @@
 {
-    "name": "Better Armory",
-    "version_number": "1.0.0",
+    "name": "Better_Armory",
+    "version_number": "1.0.1",
     "website_url": "https://github.com/GeraudBertrand/BetterArmory",
     "description": "A mod adding multiple item to give more option to play. Would want to upgrade the armory ?",
     "dependencies": [
-        "BepInEx-BepInExPack-5.4.2101",
-        "R2API-R2API-5.0.5"
     ]
 }

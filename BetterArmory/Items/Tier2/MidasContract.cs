@@ -72,15 +72,12 @@ namespace BetterArmory.Items.Tier2
         {
             orig(self, damageReport);
             CharacterBody body = damageReport.attackerBody;
-            if (body != null && body.isPlayerControlled)
+            if (body != null && body.isPlayerControlled && GetCount(body) > 0)
             {
-                ChatMessage.SendColored("Player: "+body.name, Color.yellow);
-                ChatMessage.SendColored("Kill count : "+body.multiKillCount, Color.yellow);
                 if (body.multiKillCount >= KillThreshold.Value)
                 {
                     if (!body.HasBuff(GoldBuff))
                     {
-                        ChatMessage.SendColored("Get buff : " + GoldBuff.name, Color.yellow);
                         body.AddTimedBuff(GoldBuff,BuffTime.Value);
                     }
                 }
@@ -94,12 +91,10 @@ namespace BetterArmory.Items.Tier2
                 if (self.gameObject)
                 {
                     CharacterBody body = self.GetBody();
-                    if (body) {
+                    if (body && GetCount(body) > 0) {
                         if (body.HasBuff(GoldBuff))
                         {
-                            ChatMessage.SendColored("Gain gold before: " + amount, Color.yellow);
                             amount = (uint)(amount * (1 + GoldMultBase.Value + (GoldMultStack.Value * (GetCount(body) - 1))));
-                            ChatMessage.SendColored("Gain gold after: " + amount, Color.yellow);
                         }
                     }
                 }
