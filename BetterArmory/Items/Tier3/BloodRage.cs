@@ -15,7 +15,7 @@ namespace BetterArmory.Items.Tier3
     {
         public override string ItemName => "Blood Rage";
         public override string ItemLangTokenName => "BLOOD_RAGE";
-        public override string ItemPickupDesc => "With every wound, the rage grows. When the body falters, the fists deliver the final judgment.";
+        public override string ItemPickupDesc => "With every wound, the rage deepens. When the body falters, the fists deliver the final judgment.";
         public override string ItemFullDescription => $"For every <style=cIsHealth> 25%</style> <style=cStack>(- 10% per stack)</style> of life missing, gain <style=cIsDamage>{BaseDamageGranted.Value} base damage</style>.";
         public override string ItemLore => " LORE ";
 

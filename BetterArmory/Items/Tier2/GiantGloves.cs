@@ -15,7 +15,7 @@ namespace BetterArmory.Items.Tier2
     {
         public override string ItemName => "Giants Gloves";
         public override string ItemLangTokenName => "GIANTS_GLOVES";
-        public override string ItemPickupDesc => "Woven for hands capable of crushing mountains, these gloves still pulse with the strength of their former master.";
+        public override string ItemPickupDesc => "Forged for hands capable of crushing mountains, these gloves still pulse with the strength of their former master.";
         public override string ItemFullDescription => $"Increase your health by <style=cIsHealth>{GrantedHealth.Value}%</style> <style=cStack>(+{GrantedHealth.Value}% per stack)</style>. Boost your damage by <style=cIsHealth>3% of your <style=cIsHealth>max health.";
         public override string ItemLore => "";
 

@@ -11,7 +11,7 @@ namespace BetterArmory.Equipment
     {
         public override string EquipmentName => "Converter";
         public override string EquipmentLangTokenName => "CONVERTER";
-        public override string EquipmentPickupDesc => "Those who fear pain seek another way. Surrender your vitality, and in return, gain a shield of pure energy.";
+        public override string EquipmentPickupDesc => "Those who fear pain seek another path. Surrender your vitality, and in return, wield a shield of pure energy.";
         public override string EquipmentFullDescription => $"Exchange {ConverterRate.Value}% of max HP to shield.";
         public override string EquipmentLore => "";
 

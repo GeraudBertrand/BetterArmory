@@ -11,7 +11,7 @@ Better Armory is a mod for Risk of Rain 2 that adds a variety of items to change
 ### Tier 1
 Icons | Items | Function
 ---|---|---:
-<img src="https://raw.githubusercontent.com/GeraudBertrand/BetterArmory/master/BetterArmory/Icons/LittlePlate.png" width=100/> | **Little Plate** | <span style="font-size:1.1rem;font-weight:400"> Lightweight but surprisingly durable, ensuring you last just a little longer</span>
+<img src="https://raw.githubusercontent.com/GeraudBertrand/BetterArmory/master/BetterArmory/Icons/LittlePlate.png" width=100/> | **Little Plate** | <span style="font-size:1.1rem;font-weight:400"> Lightweight yet surprisingly durable, ensuring you last just a little longer</span>
 <img src="https://raw.githubusercontent.com/GeraudBertrand/BetterArmory/master/BetterArmory/Icons/BrokenArrow_icon.png" width=100/>|**Splintered Arrow**| <span style="font-size:1.1rem;font-weight:400"> The shaft is broken, the arrowhead missing—yet its mark remains. Attacks have a chance to curse enemies, amplifying the pain they suffer</span>
 
 <br>
@@ -23,7 +23,7 @@ Icons | Items | Function
 ---|---|---:
 <img src="https://raw.githubusercontent.com/GeraudBertrand/BetterArmory/master/BetterArmory/Icons/GoldenArrowIcon.png" width=100/> | **Golden Arrow** | <span style="font-size:1.1rem;font-weight:400"> It never dulls, never bends, never fails. A symbol of absolute precision, it enhances the lethality of every critical strike. </span>
 <img src="https://raw.githubusercontent.com/GeraudBertrand/BetterArmory/master/BetterArmory/Icons/MidasContractIcon.png" width=100/>|**Midas Contract**| <span style="font-size:1.1rem;font-weight:400"> Signed in greed, sealed in blood. The longer the carnage, the greater the reward. </span>
-<img src="https://raw.githubusercontent.com/GeraudBertrand/BetterArmory/master/BetterArmory/Icons/GiantGlovesIcon.png" width=100/>|**Giant Gloves**| <span style="font-size:1.1rem;font-weight:400"> Woven for hands capable of crushing mountains, these gloves still pulse with the strength of their former master.</span>
+<img src="https://raw.githubusercontent.com/GeraudBertrand/BetterArmory/master/BetterArmory/Icons/GiantGlovesIcon.png" width=100/>|**Giant Gloves**| <span style="font-size:1.1rem;font-weight:400"> Forged for hands capable of crushing mountains, these gloves still pulse with the strength of their former master.</span>
 
 <br>
 <br>
@@ -32,7 +32,7 @@ Icons | Items | Function
 
 Icons | Items | Function
 ---|---|---:
-<img src="https://raw.githubusercontent.com/GeraudBertrand/BetterArmory/master/BetterArmory/Icons/Magatama.png" width=100/> | **Blood Rage** | <span style="font-size:1.1rem;font-weight:400"> With every wound, the rage grows. When the body falters, the fists deliver the final judgment.</span>
+<img src="https://raw.githubusercontent.com/GeraudBertrand/BetterArmory/master/BetterArmory/Icons/Magatama.png" width=100/> | **Blood Rage** | <span style="font-size:1.1rem;font-weight:400"> With every wound, the rage deepens. When the body falters, the fists deliver the final judgment.</span>
 <img src="https://raw.githubusercontent.com/GeraudBertrand/BetterArmory/master/BetterArmory/Icons/Bulwark.png" width=100/>|**Bulwark**| <span style="font-size:1.1rem;font-weight:400"> Forged in suffering, tempered in battle. A true bulwark never crumbles. </span>
 <img src="https://raw.githubusercontent.com/GeraudBertrand/BetterArmory/master/BetterArmory/Icons/QueronBookIcon.png" width=100/>|**Queron Contract**| <span style="font-size:1.1rem;font-weight:400"> The more you take, the more you become. But will there be anything left of you in the end? Killing an enemy grants a chance to obtain a permanent stat bonus. </span>
 
@@ -43,7 +43,7 @@ Icons | Items | Function
 
 Icons | Items | Function
 ---|---|---:
-<img src="https://raw.githubusercontent.com/GeraudBertrand/BetterArmory/master/BetterArmory/Icons/MitrixJuice.png" width=100/> | **Midas Juice** | <span style="font-size:1.1rem;font-weight:400"> A tonic to accelerate your attack… though power is never free </span> </span>
+<img src="https://raw.githubusercontent.com/GeraudBertrand/BetterArmory/master/BetterArmory/Icons/MitrixJuice.png" width=100/> | **Midas Juice** | <span style="font-size:1.1rem;font-weight:400"> A tonic to hasten your strikes… but power always comes at a price. </span> </span>
 
 
 <br>
@@ -53,7 +53,7 @@ Icons | Items | Function
 
 Icons | Items | Function
 ---|---|---:
-<img src="https://raw.githubusercontent.com/GeraudBertrand/BetterArmory/master/BetterArmory/Icons/ConverterIcon.png" width=100/> | Converter| Those who fear pain seek another way. Surrender your vitality, and in return, gain a shield of pure energy.
+<img src="https://raw.githubusercontent.com/GeraudBertrand/BetterArmory/master/BetterArmory/Icons/ConverterIcon.png" width=100/> | Converter| Those who fear pain seek another path. Surrender your vitality, and in return, wield a shield of pure energy.
 
 ## BUFFS
 

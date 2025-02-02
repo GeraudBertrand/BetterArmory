@@ -11,7 +11,7 @@ namespace BetterArmory.Items.Tier1
     {
         public override string ItemName => "Little Plate";
         public override string ItemLangTokenName => "LITTLE_PLATE";
-        public override string ItemPickupDesc => "Lightweight but surprisingly durable, ensuring you last just a little longer";
+        public override string ItemPickupDesc => "Lightweight yet surprisingly durable, ensuring you last just a little longer";
         public override string ItemFullDescription => $"Increase armor by <style=cIsHealing>{ArmorBase.Value}</style> <style=cStack>(+{ArmorPerStack.Value} per stack)</style>";
         public override string ItemLore => $"";
 
