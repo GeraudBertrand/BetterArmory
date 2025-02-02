@@ -15,8 +15,8 @@ namespace BetterArmory.Items.Tier3
     {
         public override string ItemName => "Blood Rage";
         public override string ItemLangTokenName => "BLOOD_RAGE";
-        public override string ItemPickupDesc => "Make your bleeding your strength. The damage inflicted on you will make your punches be the end.";
-        public override string ItemFullDescription => $"For each <style=cIsHealth> 25%</style> <style=cStack>(- 10% per stack)</style> health lost, you will gain <style=cIsDamage>{BaseDamageGranted.Value} base damage</style>.";
+        public override string ItemPickupDesc => "With every wound, the rage grows. When the body falters, the fists deliver the final judgment.";
+        public override string ItemFullDescription => $"For every <style=cIsHealth> 25%</style> <style=cStack>(- 10% per stack)</style> of life missing, gain <style=cIsDamage>{BaseDamageGranted.Value} base damage</style>.";
         public override string ItemLore => " LORE ";
 
         public override ItemTier Tier => ItemTier.Tier3;
@@ -27,7 +27,7 @@ namespace BetterArmory.Items.Tier3
         public static BuffDef DamageBuff;
 
         public override Sprite ItemIcon => MainAssets.LoadAsset<Sprite>("Magatama.png");
-        public override GameObject ItemModel => MainAssets.LoadAsset<GameObject>("Magatama.prefab");
+        public override GameObject ItemModel => MainAssets.LoadAsset<GameObject>("MagatamaDisplay.prefab");
 
         public override void Init(ConfigFile config)
         {
@@ -68,7 +68,7 @@ namespace BetterArmory.Items.Tier3
             orig(self);
             var healthComp = self.healthComponent;
             // Should make the nb of buff update want hp change.
-            if (self && GetCount(self) > 0)
+            if (self && healthComp && GetCount(self) > 0)
             {
                 int countStack = StackOfPercentLost(healthComp.health, healthComp.fullHealth, GetCount(self));
                 self.SetBuffCount(DamageBuff.buffIndex, countStack);

@@ -19,7 +19,7 @@ namespace BetterArmory
     {
         public const string ModGuid = "com.Tios.BetterArmory";
         public const string ModName = "Better Armory";
-        public const string ModVer = "0.5.0";
+        public const string ModVer = "1.0.3";
 
         public static AssetBundle MainAssets;
 
@@ -29,9 +29,6 @@ namespace BetterArmory
 
         private void Awake()
         {
-            // Don't know how to create/use an asset bundle, or don't have a unity project set up?
-            // Look here for info on how to set these up: https://github.com/KomradeSpectre/AetheriumMod/blob/rewrite-master/Tutorials/Item%20Mod%20Creation.md#unity-project
-
             
             using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("BetterArmory.betterarmoryassets"))
             {
@@ -82,6 +79,8 @@ namespace BetterArmory
                     Logger.LogInfo($"{equipment.EquipmentLangTokenName} was created !");
                 }
             }
+
+            Logger.LogInfo("MOD Setup done !");
         }
 
 

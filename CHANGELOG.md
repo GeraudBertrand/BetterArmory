@@ -1,8 +1,4 @@
- `1.0.1`
-
--    ***ADDED CONTENT***
-    - Added Queron Book item to the pool
-    - Added Converter equipment to the pool
+ `1.0.2`
 
 -    ***FIXED CONTENT***
-    - Change README to english version
+    - Queron Contract error on Sucide, verify the attacker now to only execute if there is an attacker

@@ -11,8 +11,8 @@ namespace BetterArmory.Equipment
     {
         public override string EquipmentName => "Converter";
         public override string EquipmentLangTokenName => "CONVERTER";
-        public override string EquipmentPickupDesc => "Shield is BETTER than life !";
-        public override string EquipmentFullDescription => $"Exchange {ConverterRate.Value}% of max HP to blue shield.";
+        public override string EquipmentPickupDesc => "Those who fear pain seek another way. Surrender your vitality, and in return, gain a shield of pure energy.";
+        public override string EquipmentFullDescription => $"Exchange {ConverterRate.Value}% of max HP to shield.";
         public override string EquipmentLore => "";
 
         public override GameObject EquipmentModel => MainAssets.LoadAsset<GameObject>("ConverterDisplay.prefab");
@@ -67,6 +67,7 @@ namespace BetterArmory.Equipment
             ChatMessage.SendColored("Converting...", Color.green);
 
             var health = body.healthComponent;
+            if(health == null) return false;
             if (health.fullHealth > 100f)
             {
                 body.AddBuff(ConvertBuff);

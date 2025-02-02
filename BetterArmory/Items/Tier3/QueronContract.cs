@@ -17,8 +17,8 @@ namespace BetterArmory.Items.Tier3
     {
         public override string ItemName => "Contract : Queron";
         public override string ItemLangTokenName => "QUERON_CONTRACT";
-        public override string ItemPickupDesc => "The thirst for blood will make you stronger. Kill and you may be rewarded.";
-        public override string ItemFullDescription => $"Killing give a chance <style=cIsUtility>( 4% <style=cStack>(+ 2% per stack)</style> )</style> to get a permanent bonus to a stat";
+        public override string ItemPickupDesc => "The more you take, the more you become. But will there be anything left of you in the end? Killing an enemy grants a chance to obtain a permanent stat bonus.";
+        public override string ItemFullDescription => $"Killing an enemy grants a chance <style=cIsUtility>( 4% <style=cStack>(+ 2% per stack)</style> )</style> to obtain a permanent stat bonus.";
         public override string ItemLore => "LORE";
 
         public override ItemTier Tier => ItemTier.Tier3;
@@ -92,7 +92,7 @@ namespace BetterArmory.Items.Tier3
                     BaseCritChanceBonus.Value,
                     BaseCritDamageBonus.Value,
                     BaseCooldownBonus.Value
-                    );
+                );
             }
         }
 
@@ -107,11 +107,14 @@ namespace BetterArmory.Items.Tier3
 
             if(self && self.healthComponent)
             {
-                var queronComponenent = self.GetComponent<QueronStatFollower>();
-                if (!queronComponenent) 
-                { 
-                    queronComponenent = self.gameObject.AddComponent<QueronStatFollower>();
-                    queronComponenent.Initialize();
+                if (GetCount(self) > 0)
+                {
+                    var queronComponenent = self.GetComponent<QueronStatFollower>();
+                    if (!queronComponenent)
+                    {
+                        queronComponenent = self.gameObject.AddComponent<QueronStatFollower>();
+                        queronComponenent.Initialize();
+                    }
                 }
             }
         }
@@ -126,30 +129,34 @@ namespace BetterArmory.Items.Tier3
         private void QueronRollBonus(On.RoR2.GlobalEventManager.orig_OnCharacterDeath orig, GlobalEventManager self, DamageReport damageReport)
         {
             orig(self, damageReport);
-
-            var body = damageReport.attacker.GetComponent<CharacterBody>();
-            if (body != null) 
-            { 
-                int nbItem = GetCount(body);
-                if (nbItem > 0)
+            if (damageReport != null)
+            {
+                if (damageReport.attacker != null)
                 {
-                    //Roll
-                    int chance = UnityEngine.Random.Range(1, 100);
-                    if( chance <= (4 +  2*(nbItem-1)) )   // Default chanche 3% +2% par item 
+                    var body = damageReport.attacker.GetComponent<CharacterBody>();
+                    if (body != null)
                     {
-                        StatSelector r = RandomSelectStat();
-                        QueronStatFollower qsf = body.GetComponent<QueronStatFollower>();
-                        if (!qsf) 
-                        { 
-                            qsf = body.gameObject.AddComponent<QueronStatFollower>(); 
-                            qsf.Initialize(); 
+                        int nbItem = GetCount(body);
+                        if (nbItem > 0)
+                        {
+                            //Roll
+                            int chance = UnityEngine.Random.Range(1, 100);
+                            if (chance <= (4 + 2 * (nbItem - 1)))   // Default chanche 3% +2% par item 
+                            {
+                                StatSelector r = RandomSelectStat();
+                                QueronStatFollower qsf = body.GetComponent<QueronStatFollower>();
+                                if (!qsf)
+                                {
+                                    qsf = body.gameObject.AddComponent<QueronStatFollower>();
+                                    qsf.Initialize();
+                                }
+                                qsf.Increment(r);
+                                body.statsDirty = true;
+                            }
                         }
-                        qsf.Increment(r);
-                        body.statsDirty = true;
                     }
                 }
             }
-
         }
 
 

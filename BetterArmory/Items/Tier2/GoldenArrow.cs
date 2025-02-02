@@ -14,8 +14,8 @@ namespace BetterArmory.Items.Tier2
     {
         public override string ItemName => "Golden Arrow";
         public override string ItemLangTokenName => "GOLDEN_ARROW";
-        public override string ItemPickupDesc => "Better arrows! So better damage!";
-        public override string ItemFullDescription => $"Let the gold imbue your weapon and become the edge of your bullet. Boost your critical damage by <style=cIsDamage>{CritCoeff.Value *100}%</style> <style=cStack>(+ {CritCoeff.Value *100}% per Stack)</style>";
+        public override string ItemPickupDesc => "It never dulls, never bends, never fails. A symbol of absolute precision, it enhances the lethality of every critical strike.";
+        public override string ItemFullDescription => $"Increase your critical damage by <style=cIsDamage>{CritCoeff.Value *100}%</style> <style=cStack>(+ {CritCoeff.Value *100}% per Stack)</style>";
         public override string ItemLore => "";
 
         public override ItemTier Tier => ItemTier.Tier2;

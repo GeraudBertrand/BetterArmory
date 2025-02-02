@@ -13,8 +13,8 @@ namespace BetterArmory.Items.Tier3
     {
         public override string ItemName => "Large Bulwark";
         public override string ItemLangTokenName => "LARGE_BULWARK";
-        public override string ItemPickupDesc => "Reduce incoming damage";
-        public override string ItemFullDescription => $"Reduce damage by <style=cIsHealing>{baseReduction.Value * 100}%</style> <style=cStack>(+{stackReduction.Value * 100}% per stack) for incoming damage.</style>";
+        public override string ItemPickupDesc => "Forged in suffering, tempered in battle. A true bulwark never crumbles.";
+        public override string ItemFullDescription => $"Resists damage by <style=cIsHealing>{baseReduction.Value * 100}%</style> <style=cStack>(+{stackReduction.Value * 100}% per stack).</style>";
         public override string ItemLore => "";
 
         public override ItemTier Tier => ItemTier.Tier3;

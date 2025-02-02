@@ -15,7 +15,7 @@ namespace BetterArmory.Items.Lunar
     {
         public override string ItemName => "Mitrix Juice";
         public override string ItemLangTokenName => "MITRIX_JUICE";
-        public override string ItemPickupDesc => "A tonic to accelerate your attack! But at the risk of sacrificing your power ...";
+        public override string ItemPickupDesc => "A tonic to accelerate your attack… though power is never free";
         public override string ItemFullDescription => "Increases attack speed by 60% ( + 60% per stack ) but reduces attack damage by 60% ( + 60% per stack )";
         public override string ItemLore => "Mitrix Juice";
 

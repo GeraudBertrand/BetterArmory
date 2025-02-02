@@ -16,8 +16,8 @@ namespace BetterArmory.Items.Tier2
     {
         public override string ItemName => "Contract : Midas";
         public override string ItemLangTokenName => "MIDAS_CONTRACT";
-        public override string ItemPickupDesc => "pickup";
-        public override string ItemFullDescription => $"Killing spree increase gold gain multiplied by <style=cIsUtility>{GoldMultBase.Value*100}%</style> <style=cStack>(+{GoldMultStack.Value*100}% per stack)</style> for killing time";
+        public override string ItemPickupDesc => "Signed in greed, sealed in blood. The longer the carnage, the greater the reward.";
+        public override string ItemFullDescription => $"Killing spree increase gold gained by <style=cIsUtility>{GoldMultBase.Value*100}%</style> <style=cStack>(+{GoldMultStack.Value*100}% per stack)</style> for the duration of the slaughter.";
         public override string ItemLore => "LORE";
 
         public override ItemTier Tier => ItemTier.Tier2;

@@ -12,7 +12,7 @@ namespace BetterArmory.Items.Tier1
     {
         public override string ItemName => "Splintered Arrow";
         public override string ItemLangTokenName => "SPLINTERED_ARROW";
-        public override string ItemPickupDesc => "Broken projectile to curse your enemies and destroy their innards.";
+        public override string ItemPickupDesc => "The shaft is broken, the arrowhead missing—yet its mark remains. Attacks have a chance to curse enemies, amplifying the pain they suffer.";
         public override string ItemFullDescription => $"<style=cIsUtility>{ChanceToMark.Value * 100}% to curse</style> enemies on hit, dealing <style=cIsDamage>{BaseDamageBonusMark.Value *100}%</style> <style=cStack>(+ {StackDamageBonusMark.Value *100}% per stack)</style> more damage.";
         public override string ItemLore => "Lore";
 
@@ -84,14 +84,20 @@ namespace BetterArmory.Items.Tier1
             {
                 if (victim != null)
                 {
-                    CharacterBody attacker = damageInfo.inflictor.GetComponent<CharacterBody>();
-                    if ( GetCount(attacker) > 0 )
+                    if (damageInfo.inflictor != null)
                     {
-                        float roll = UnityEngine.Random.Range(0f, 1f);
-                        if (roll <= ChanceToMark.Value)
+                        CharacterBody attacker = damageInfo.inflictor.GetComponent<CharacterBody>();
+                        if ( attacker != null && GetCount(attacker) > 0)
                         {
-                            CharacterBody vBody = victim.GetComponent<CharacterBody>();
-                            vBody.AddTimedBuff(MarkDebuff, TimeDebuff.Value);
+                            float roll = UnityEngine.Random.Range(0f, 1f);
+                            if (roll <= ChanceToMark.Value)
+                            {
+                                CharacterBody vBody = victim.GetComponent<CharacterBody>();
+                                if (vBody != null)
+                                {
+                                    vBody.AddTimedBuff(MarkDebuff, TimeDebuff.Value);
+                                }
+                            }
                         }
                     }
                 }
